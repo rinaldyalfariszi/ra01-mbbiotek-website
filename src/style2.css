@@ -1,0 +1,465 @@
+/**
+ * ============================================================
+ * Reset
+ * ============================================================
+ */
+@layer reset {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        /* box-sizing: content-box; */
+        /* border: 1px solid red; */
+    }
+
+    /* Adjust size when landscape on mobile devices */
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    figure,
+    blockquote,
+    dl,
+    dd {
+        margin: 0;
+    }
+
+    /* https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html */
+    [role="list"] {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        min-block-size: 100vh;
+        line-height: 1;
+    }
+
+    h1,
+    h2,
+    h3,
+    button,
+    input,
+    label {
+        line-height: 1;
+    }
+
+    img,
+    picture {
+        max-inline-size: 100%;
+        display: block;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+    }
+
+    /* == Lenis CSS Setup == */
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+    }
+
+    .lenis.lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+    }
+
+    .lenis.lenis-stopped {
+        overflow: clip;
+    }
+
+    .lenis.lenis.lenis-smooth iframe {
+        pointer-events: none;
+    }
+
+    /* class-based approach */
+    .force-scrollbar {
+        scrollbar-gutter: stable;
+        overflow-y: scroll !important; /* force a reserved gutter while stopped */
+    }
+}
+
+
+
+
+
+/**
+ * ============================================================
+ * Base
+ * ============================================================
+ */
+@layer base {
+    /* Font Face */
+    @font-face {
+        font-family: 'Inter';
+        src: url('/fonts/inter/Inter.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: 'Neue Haas Grotesk Display Pro';
+        src: url('/fonts/neue-haas-grotesk-display-pro/NeueHaasGroteskDisplayPro.woff2') format('woff2');
+    }
+
+    /* Primitive Custom Properties */
+    :root {
+        /* Color */
+        --p-clr-white: #FEFEFE;
+        --p-clr-black: #0A0A0A;
+        --p-clr-dark-900: #020D0F;
+        --p-clr-gradient-100: linear-gradient(180deg,#020d0f00 0%, #0F0520 100%);
+        --p-clr-gradient-200: linear-gradient(180deg,#0F0520 0%, #001E2A 100%);
+        --p-clr-gradient-300: linear-gradient(180deg,#001E2A 0%, #0F000E 100%);
+
+        /* Font Family */
+        --p-ff-1: "Neue Haas Grotesk Display Pro", sans-serif;
+        --p-ff-2: "Inter", sans-serif;
+
+        /* Font Weight */
+        --p-fw-100: 100;
+        --p-fw-200: 200;
+        --p-fw-300: 300;
+        --p-fw-400: 400;
+        --p-fw-500: 500;
+        --p-fw-600: 600;
+        --p-fw-700: 700;
+        --p-fw-800: 800;
+        --p-fw-900: 900;
+        --p-fw-1000: 1000;
+
+        /* Font Leading (Line Height) */
+        --p-fl-none: 1;
+        --p-fl-fit: 1.05;
+        --p-fl-84: 84;
+
+        /* Font Tracking (Letter Spacing) */
+        --p-ft-tightest: -0.12em;
+        --p-ft-tighter: -0.01em;  /* -1% */
+        --p-ft-tight: -0.006em;   /* -0.06% */
+        --p-ft-normal: 0em;
+        --p-ft-wide: 0.006em;     /* 0.06% */
+        --p-ft-wider: 0.01em;     /* 1% */
+        --p-ft-widest: 0.12em;
+
+        /* Custom Viewport Width - Scrollbar Width */
+        --p-sbw: 15px;
+        --p-100vw: calc(100vw - var(--p-sbw, 0px));
+
+        /* Global Size (Fluid) */
+        /* https://utopia.fyi/clamp/calculator/?a=390,1699,16%E2%80%9420|48%E2%80%9484|48%E2%80%94120|64%E2%80%94120&p=p-gs */
+        --p-gs-48-120: clamp(48px, 26.55px + 5.5vw, 120px);
+        --p-gs-48-84: clamp(48px, 37.2743px + 2.7502vw, 84px);
+        --p-gs-32-84: clamp(32px, 16.5073px + 3.9725vw, 84px);
+        --p-gs-16-20: clamp(16px, 14.8083px + 0.3056vw, 20px);
+        --p-gs-12-20: clamp(12px, 9.6165px + 0.6112vw, 20px);
+
+        @media (width > 2000px) {
+            --p-gs-48-120: 6vw;
+            --p-gs-48-84: 4.2vw;
+            --p-gs-16-20: 1vw;
+            --p-gs-12-20: 1vw;
+        }
+    }
+
+    /* Semantic Custom Properties */
+    :root {
+		--s-text-main: var(--p-clr-white);
+		--s-text-high-contrast: var(--p-clr-white);
+		--s-text-brand: var(--p-clr-brand-500);
+		--s-text-brand-light: var(--p-clr-brand-400);
+
+		--s-background-accent-light: var(--p-clr-green-400);
+		--s-background-accent-main: var(--p-clr-gradient-100);
+		--s-background-accent-dark: var(--p-clr-green-600);
+
+		--s-background-extra-light: var(--p-clr-brown-500);
+		--s-background-light: var(--p-clr-brown-600);
+		--s-background-main: var(--p-clr-dark-900);
+		--s-background-dark: var(--p-clr-brown-800);
+		--s-background-extra-dark: var(--p-clr-brown-900);
+
+
+        /* Semantic Font Family */
+		--s-font-family-heading: var(--p-ff-1);
+		--s-font-family-body: var(--p-ff-2);
+		--s-font-family-link: var(--p-ff-2);
+		--s-font-family-label: var(--p-ff-1);
+
+
+        /* Semantic Font Sizes */
+		--s-font-size-heading-xl: var(--p-fs-84);
+		--s-font-size-heading-lg: var(--p-fs-64);
+		--s-font-size-heading-regular: var(--p-fs-48);
+
+		--s-font-size-body-lg: var(--p-fs-20);
+		--s-font-size-body-regular: var(--p-fs-16);
+		--s-font-size-body-sm: var(--fs-300);
+
+
+        /* Semantic Font Weights */
+		--s-font-weight-heading-light: var(--p-fw-400);
+		--s-font-weight-heading-regular: var(--p-fw-500);
+		--s-font-weight-heading-medium: var(--p-fw-600);
+
+		--s-font-weight-body-light: var(--p-fw-300);
+		--s-font-weight-body-regular: var(--p-fw-400);
+		--s-font-weight-body-semibold: var(--p-fw-600);
+
+
+        /* Semantic Font Leading (Line Heights) */
+        --s-font-leading-heading-xl: var(--p-fl-fit);
+        --s-font-leading-heading-lg: var(--p-fl-fit);
+
+
+        /* Semantic Font Tracking (Letter Spacing) */
+        --s-font-tracking-heading-xl: var(--p-ft-tight);
+        --s-font-tracking-heading-lg: var(--p-ft-normal);
+
+
+        /* Border Radius */
+		--s-border-radius-1: 0.25rem;
+		--s-border-radius-2: 0.5rem;
+		--s-border-radius-3: 0.75rem;
+
+
+        /* Semantic For Desktop */
+        @media (width > 760px) {
+        }
+
+        /* Semantic For Tablet */
+        @media (width > 760px) {
+        }
+
+        /* Semantic For Mobile */
+        @media (width > 760px) {
+        }
+	}
+
+    html {
+        font-family: var(--s-font-family-body);
+        line-height: 1.6;
+    }
+
+    body {
+        font-size: var(--s-font-size-body-regular);
+        color: var(--s-text-main);
+        background: var(--s-background-main);
+    }
+
+    h1, h2, h3, h4 {
+        font-family: var(--s-font-family-heading);
+        color: var(--s-text-high-contrast);
+        will-change: transform;
+    }
+
+    p, a {
+        will-change: transform;
+    }
+
+    a {
+        color: var(--s-text-high-contrast)
+    }
+
+    a:hover,
+    a:focus-visible {
+        color: var(--s-text-brand-light);
+    }
+
+    img {
+        border-radius: var(--s-border-radius-3);
+    }
+}
+
+
+
+
+
+/**
+ * ============================================================
+ * Layout
+ * ============================================================
+ */
+ @layer layout {
+    .wrapper {
+        --wrapper-max-width: 1130px;
+        
+        max-width: calc(var(--wrapper-max-width) + 0rem); /* Match Figma measurement */
+        padding-inline: 5.5rem;
+        /* margin-inline: auto; */
+        margin-inline: 0;
+
+        &[data-wrapper-width="max-content"] {
+            --wrapper-max-width: 3840px;
+        }
+
+        @media (width > 3840px) {
+            margin-inline: auto;
+        }
+    }
+
+    .hero-section {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: var(--p-100vw);
+        justify-content: flex-end;
+        align-items: center;
+        background: linear-gradient(180deg, #300B23 0%, #200717 100%);
+        visibility: hidden; /* Fix FOUC (Flash of Unstyled Content) */
+    }
+
+    .hero-image {
+        display: flex;
+        align-items: center;
+        margin-inline: auto;
+        width: 786px;
+        height: 647px;
+        aspect-ratio: 16/9;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .hero-content-bottom {
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 106px;
+        margin-bottom: 64px;
+    }
+}
+
+
+
+
+
+/**
+ * ============================================================
+ * Components
+ * ============================================================
+ */
+ @layer components {
+    /* == Semantic Font Component == */
+    .hero-headline {
+        color: #FFFFFF;
+        font-size: var(--p-gs-12-20);
+        font-style: normal;
+        font-weight: var(--s-font-weight-body-light);
+        line-height: 148%; /* 1.85rem */
+        margin-top: 22px;
+    }
+
+    .heading-xl-regular-fluid {
+        min-width: fit-content;
+        font-size: var(--p-gs-32-84);
+        font-family: var(--s-font-family-heading);
+        font-weight: var(--s-font-weight-heading-regular);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
+    .heading-xl-light {
+        font-family: var(--s-font-family-heading);
+        font-size: var(--s-font-size-heading-xl);
+        font-weight: var(--s-font-weight-heading-light);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
+    .heading-xl-regular {
+        font-family: var(--s-font-family-heading);
+        font-size: var(--s-font-size-heading-xl);
+        font-weight: var(--s-font-weight-heading-regular);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
+    .heading-xl-medium {
+        font-family: var(--s-font-family-heading);
+        font-size: var(--s-font-size-heading-xl);
+        font-weight: var(--s-font-weight-heading-medium);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+}
+
+
+
+
+
+/**
+ * ============================================================
+ * Utilities
+ * ============================================================
+ */
+@layer utilities {
+    .u-item-center {
+        display: flex;
+        align-items: center;
+        margin-inline: auto;
+    }
+
+    .u-h-full {
+        height: 100vh;
+    }
+
+    .u-w-full {
+        width: 100vw;
+    }
+
+    .u-anim-wrapper {
+        min-width: 792px;
+        max-width: 792px;
+        visibility: hidden;
+    }
+
+    .u-generated-text-lines {
+        overflow: hidden;
+        will-change: transform;
+        /* border: 1px solid red; */
+    }
+}
+
+
+/* @keyframes move-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0.5;
+        transform: translateY(-35%);
+    }
+}
+
+@keyframes move-in {
+    from {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    }
+
+    to {
+        clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
+    }
+}
+
+::view-transition-old(root) {
+    animation: 1.5s cubic-bezier(0.87, 0, 0.13, 1) both move-out
+}
+
+::view-transition-new(root) {
+    animation: 1.5s cubic-bezier(0.87, 0, 0.13, 1) both move-in
+} */
