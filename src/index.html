@@ -37,7 +37,12 @@
         </header>
 
         <!-- Site Main -->
-        <main>
+        <main></main>
+
+        <h1>On DOM</h1>
+
+        <!-- Templates -->
+        <template id="home-page-template">
             <section class="hero-section">
                 <div class="wrapper" data-wrapper-width="max-content">
                     <div class="hero-content">
@@ -61,18 +66,14 @@
                     </div>
                 </div>
             </section>
+        </template>
 
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
-        </main>
+        <template id="test-page-template">
+            <h1>On Web Component template</h1>
+        </template>
 
         <!-- Scripts -->
+        <script type="module" src="./App.js"></script>
         <script type="module" src="./script2.js"></script>
     </body>
 </html>
