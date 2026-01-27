@@ -1,6 +1,6 @@
 import { gsap } from "gsap"
 
-export class HomePage extends HTMLElement
+export class AboutPage extends HTMLElement
 {
     constructor()
     {
@@ -20,7 +20,7 @@ export class HomePage extends HTMLElement
 
     createContent()
     {
-        this.template = document.getElementById("home-page-template")
+        this.template = document.getElementById("about-page-template")
         this.content = this.template.content.cloneNode(true)
         this.appendChild(this.content)
     }
@@ -38,4 +38,4 @@ export class HomePage extends HTMLElement
     }
 }
 
-customElements.define("home-page", HomePage)
+customElements.define("about-page", AboutPage)

@@ -316,7 +316,7 @@
         justify-content: flex-end;
         align-items: center;
         background: linear-gradient(180deg, #300B23 0%, #200717 100%);
-        visibility: hidden; /* Fix FOUC (Flash of Unstyled Content) */
+        /* visibility: hidden; /* Fix FOUC (Flash of Unstyled Content) */
     }
 
     .hero-image {
@@ -394,6 +394,19 @@
         line-height: var(--s-font-leading-heading-xl);
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
+
+    .sail {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 9994;
+        background: #0e0e0e;
+        will-change: opacity;
+        width: 100%;
+        pointer-events: none;
+        opacity: 0
+    }
 }
 
 
@@ -406,6 +419,10 @@
  * ============================================================
  */
 @layer utilities {
+    .u-background-black {
+        background-color: black;
+    }
+
     .u-item-center {
         display: flex;
         align-items: center;
@@ -463,7 +480,3 @@
 ::view-transition-new(root) {
     animation: 1.5s cubic-bezier(0.87, 0, 0.13, 1) both move-in
 } */
-
-h1 {
-    color: blue
-}

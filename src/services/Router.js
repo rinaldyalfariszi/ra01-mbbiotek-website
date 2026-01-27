@@ -39,13 +39,10 @@ const Router = {
         {
             case "/": 
                 pageElement = document.createElement("home-page")
-                // pageElement = document.createElement("h1")
-                // pageElement.textContent = "Home page"
                 Router.setMetaData("Home")
                 break;
             case "/about":
-                pageElement = document.createElement("h1")
-                pageElement.textContent = "About page"
+                pageElement = document.createElement("about-page")
                 Router.setMetaData("About")
                 break;
         }
@@ -54,17 +51,12 @@ const Router = {
         if (pageElement)
         {
             const cache = document.querySelector("main")
-            cache.innerHTML = ""
-            cache.appendChild(pageElement)
-            window.scrollX = 0
-            window.scrollY = 0
+            cache.replaceChildren(pageElement)
         }
         else
         {
             // Client side 404
-            document.querySelector("main").innerHTML = `
-                <h1>Oops, 404 page not found</h1>
-            `
+            document.querySelector("main").innerHTML = `<h1>Oops, 404 page not found</h1>`
         }
     }
 }
