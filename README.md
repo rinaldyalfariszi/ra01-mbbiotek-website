@@ -23,4 +23,7 @@ Thursday, 29 January 2026
 - Developing routing architecture by separating it into routing engine and routing app
 - Created this `README.md` file to log the project progress and documentation of the website app
 
+Friday, 30 January 2026
+- Rename the GitHub repository to `ra01-mbbiotek-website` to maintain best practice of GitHub repository naming convention and avoid potential issues
+
 </details>
