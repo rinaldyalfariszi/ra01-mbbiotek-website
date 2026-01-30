@@ -26,5 +26,7 @@ Thursday, 29 January 2026
 
 Friday, 30 January 2026
 - Renamed the GitHub repository to `ra01-mbbiotek-website` to maintain best practice of GitHub repository naming convention and avoid potential issues
+- Working on creating algorithm structure for the router system
+- Learning how AJAX works
 
 </details>
