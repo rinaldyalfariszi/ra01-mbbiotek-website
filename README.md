@@ -17,14 +17,14 @@ Tuesday, 27 January 2026
 - Developed a basic routing mechanism and web component for the home page
 
 Wednesday, 28 January 2026
-- Learning in depth of how routing system works on website through analyzing multiple website routing system with transition in it
+- Start learning in depth of how routing system works on website through analyzing multiple website routing system with transition in it
 - Experiment with transition animation using GSAP library on the routing system
 
 Thursday, 29 January 2026
-- Developing routing architecture by separating it into routing engine and routing app
+- Start developing routing architecture by separating it into routing engine and routing app
 - Created this `README.md` file to log the project progress and documentation of the website app
 
 Friday, 30 January 2026
-- Rename the GitHub repository to `ra01-mbbiotek-website` to maintain best practice of GitHub repository naming convention and avoid potential issues
+- Renamed the GitHub repository to `ra01-mbbiotek-website` to maintain best practice of GitHub repository naming convention and avoid potential issues
 
 </details>
