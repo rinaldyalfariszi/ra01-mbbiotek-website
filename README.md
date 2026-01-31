@@ -29,4 +29,7 @@ Friday, 30 January 2026
 - Working on creating algorithm structure for the router system
 - Learning how AJAX works
 
+Saturday, 31 January 2026
+- Learning in-depth of how Event Delegation works to stop event from bubbling
+
 </details>
