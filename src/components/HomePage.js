@@ -1,5 +1,3 @@
-import { gsap } from "gsap"
-
 export class HomePage extends HTMLElement
 {
     constructor()
@@ -10,12 +8,6 @@ export class HomePage extends HTMLElement
     connectedCallback()
     {
         this.createContent()
-        this.transitionIn()
-    }
-
-    disconnectedCallback()
-    {
-        this.transitionOut()
     }
 
     createContent()
@@ -23,18 +15,6 @@ export class HomePage extends HTMLElement
         this.template = document.getElementById("home-page-template")
         this.content = this.template.content.cloneNode(true)
         this.appendChild(this.content)
-    }
-
-    transitionIn()
-    {
-        gsap.timeline()
-            .from('.sail', { duration: 2, opacity: 1, ease: "power4.in" })
-    }
-
-    transitionOut()
-    {
-        gsap.timeline()
-            .from('.sail', { duration: 2, opacity: 0, ease: "power4.out" })
     }
 }
 

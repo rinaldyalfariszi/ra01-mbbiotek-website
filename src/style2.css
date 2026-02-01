@@ -401,7 +401,7 @@
         top: 0;
         height: 100%;
         z-index: 9994;
-        background: #0e0e0e;
+        background: #000000;
         will-change: opacity;
         width: 100%;
         pointer-events: none;

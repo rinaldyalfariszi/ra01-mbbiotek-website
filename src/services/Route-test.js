@@ -1,26 +1,32 @@
-const Router = {
+import { pageTransitionEnter, pageTransitionLeave } from '../animations'
+
+const Route =
+{
+    routes: [],
     init: () =>
     {
+        // Listen to <a> navlink click event
         document.querySelectorAll("a.navlink").forEach(link =>
         {
             link.addEventListener("click", event =>
             {
                 event.preventDefault() // Preventing browser from default reload behaviour when being clicked
-                const url = event.target.getAttribute("href")
-                Router.go(url)
+                const url = event.currentTarget.getAttribute("href")
+                Route.go(url)
             })
         })
 
         // Event Handler for URL changes
         window.addEventListener("popstate", event =>
         {
-            Router.go(event.state.route, false)
+            Route.go(event.state.route, false)
         })
 
         // Go to initial URL (current page URL)
-        Router.go(location.pathname)
+        Route.go(location.pathname)
     },
-    setMetaData(title) {
+    setMetaData(title)
+    {
         document.title = `${title} - MBBiotek`
     },
     go: async (route, addToHistory = true) =>
@@ -35,23 +41,40 @@ const Router = {
 
         // Render 'pageElement' based on route
         let pageElement = null
+
         switch (route)
         {
             case "/": 
                 pageElement = document.createElement("home-page")
-                Router.setMetaData("Home")
+                Route.setMetaData("Home")
+
+                Route.routes.push(route)
                 break;
             case "/about":
                 pageElement = document.createElement("about-page")
-                Router.setMetaData("About")
+                Route.setMetaData("About")
+
+                Route.routes.push(route)
                 break;
         }
+
+        console.log(`currentRoute: ${route} | routes: ${Route.routes} | length: ${Route.routes.length}`)
 
         // Clean up current page element when changing to new page URL
         if (pageElement)
         {
             const cache = document.querySelector("main")
             cache.replaceChildren(pageElement)
+            window.scrollTo(0, 0)
+
+            if (route !== Route.routes)
+            {
+                console.log("Route changed!")
+                
+                pageTransitionEnter(pageElement)
+            }
+            pageTransitionLeave(pageElement)
+            
         }
         else
         {
@@ -61,4 +84,4 @@ const Router = {
     }
 }
 
-export default Router
+export default Route

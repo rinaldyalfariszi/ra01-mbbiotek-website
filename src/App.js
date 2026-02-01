@@ -1,7 +1,6 @@
-import Router from './services/Router.js'
+import Route from './services/Route.js'
 
-import { HomePage } from './components/HomePage.js'
-import { AboutPage } from './components/AboutPage.js'
+import { pageTransitionEnter } from './animations'
 
 import Lenis from "lenis"
 import { gsap } from "gsap"
@@ -10,12 +9,13 @@ import { SplitText } from "gsap/SplitText"
 import { CustomEase } from "gsap/CustomEase"
 
 window.App = {
-    router: Router
+    router: new Route()
 }
 
 window.addEventListener("DOMContentLoaded", async () =>
 {
-    App.router.init()
+    // App.router.init()
+    App.router
 })
 
 window.addEventListener("DOMContentLoaded", async () =>
