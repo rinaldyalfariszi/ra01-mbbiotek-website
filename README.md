@@ -32,4 +32,7 @@ Friday, 30 January 2026
 Saturday, 31 January 2026
 - Learning in-depth of how Event Delegation works to stop event from bubbling
 
+Sunday, 1 February 2026
+- Continue developing routing engine and routing app
+
 </details>
