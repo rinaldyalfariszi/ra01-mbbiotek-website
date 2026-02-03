@@ -42,7 +42,7 @@ Monday, 02 February 2026
 
 Tuesday, 03 February 2026
 - Continue developing routing engine and routing app
-- Learning GitHub Fork and Clone for testing feature
+- Learning GitHub Template repository & Clone for testing feature
 - Add new product and new partner logo on current live mbbiotek.com website
 
 </details>
