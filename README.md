@@ -45,4 +45,7 @@ Tuesday, 03 February 2026
 - Learning GitHub Template repository & Clone for testing feature
 - Add new product and new partner logo on current live mbbiotek.com website
 
+Wednesday, 04 February 2026
+- Continue developing routing engine and routing app
+
 </details>
