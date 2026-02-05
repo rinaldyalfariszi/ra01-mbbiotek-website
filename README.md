@@ -48,4 +48,8 @@ Tuesday, 03 February 2026
 Wednesday, 04 February 2026
 - Continue developing routing engine and routing app
 
+Thursday, 05 February 2026
+- Developed basic routing engine and routing app
+- Start developing transition animation for each page
+
 </details>
