@@ -52,4 +52,8 @@ Thursday, 05 February 2026
 - Developed basic routing engine and routing app
 - Start developing transition animation for each page
 
+Friday, 06 February 2026
+- Continue developing transition animation for each page
+- Developing custom tween engine that implement deltaTime to make animation smooth & consistent
+
 </details>
