@@ -56,4 +56,7 @@ Friday, 06 February 2026
 - Continue developing transition animation for each page
 - Developing custom tween engine that implement deltaTime to make animation smooth & consistent
 
+Saturday, 07 February 2026
+- Created intro animation using GSAP
+
 </details>
