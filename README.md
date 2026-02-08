@@ -59,4 +59,8 @@ Friday, 06 February 2026
 Saturday, 07 February 2026
 - Created intro animation using GSAP
 
+Sunday, 08 February 2026
+- Refactor transition animations to another Transition object to make it cleaner to use
+- Finish developing basic transition animation on each page navigation
+
 </details>
