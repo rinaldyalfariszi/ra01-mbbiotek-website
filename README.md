@@ -63,4 +63,10 @@ Sunday, 08 February 2026
 - Refactor transition animations to another Transition object to make it cleaner to use
 - Finish developing basic transition animation on each page navigation
 
+Monday, 09 February 2026
+- Conducted progress checkpoint
+- Added some content to the about page hero section
+- Start developing the navigation bar
+- Fixed the text stagger animation speed from consistent to dynamic speed
+
 </details>
