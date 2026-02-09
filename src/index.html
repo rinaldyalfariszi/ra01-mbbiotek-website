@@ -6,45 +6,45 @@
         <title>MBBiotek New Website</title>
 
         <link rel="stylesheet" href="./style2.css" />
+        <script type="module" src="./App.js" defer></script>
 
         <style>
             @import url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro");
         </style>
     </head>
     <body>
+        <!-- Sail -->
+        <div id="sail"></div>
+
         <!-- Site Header -->
         <header class="site-header">
             <div class="wrapper" data-wrapper-width="max-content">
-                <img src="" alt="" />
-                <nav id="primary-nav" class="primary-navigation">
-                    <ul role="list">
-                        <li><a class="navlink" href="/">Home</a></li>
-                        <li><a class="navlink" href="/about">About</a></li>
-                        <li>
-                            <a class="navlink" href="/capabilities"
-                                >Capabilities</a
-                            >
-                        </li>
-                        <li>
-                            <a class="navlink" href="/products">Products</a>
-                        </li>
-                        <li>
-                            <a class="navlink" href="/partners">Partners</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="site-header__inner">
+                    <div>
+                        <img class="logo" src="images/company-logo-white.png" alt="" />
+                    </div>
+                    <button aria-controls="primary-nav" aria-expanded="false">
+                        <span>Menu</span>
+                    </button>
+                    <nav id="primary-nav" class="primary-navigation">
+                        <ul role="list">
+                            <li><a class="navlink" href="/">Home</a></li>
+                            <li><a class="navlink" href="/about">About</a></li>
+                            <li><a class="navlink" href="/capabilities">Capabilities</a></li>
+                            <li><a class="navlink" href="/products">Products</a></li>
+                            <li><a class="navlink" href="/partners">Partners</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </header>
-
-        <div class="sail"></div>
-        <!-- Site Main -->
-        <main></main>
-
-        <h1>On DOM</h1>
+        <div id="app">
+            <!-- Site Main -->
+            <main></main>
+        </div>
 
         <!-- Templates -->
         <template id="home-page-template">
-            <div class="sail"></div>
             <section class="hero-section">
                 <div class="wrapper" data-wrapper-width="max-content">
                     <div class="hero-content">
@@ -58,28 +58,42 @@
                                 molecular diagnostics <br />
                                 and enhancing lives
                             </h1>
-                            <p class="hero-headline">
-                                Contribute to the advancement of the early
-                                detection and treatment of infectious and
-                                non&#x2011;communicable diseases. Promote
-                                Molecular Based precision healthcare ecosystem.
-                            </p>
+                            <p class="hero-headline">Contribute to the advancement of the early detection and treatment of infectious and non&#x2011;communicable diseases. Promote Molecular Based precision healthcare ecosystem.</p>
                         </div>
                     </div>
                 </div>
             </section>
+            <section class="hero-section"></section>
+        </template>
+
+        <template id="about2-page-template">
+            <section class="hero-section">
+                <h1>About Page</h1>
+            </section>
+            <section class="hero-section"></section>
+            <section class="hero-section"></section>
         </template>
 
         <template id="about-page-template">
-            <div class="sail"></div>
-            <h1>About Page</h1>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
+            <section class="hero-section">
+                <div class="wrapper" data-wrapper-width="max-content">
+                    <div class="hero-content">
+                        <!-- Row 1 -->
+                        <img class="hero-image" src="images/cgi-1.png" alt="" />
+
+                        <!-- Row 2 -->
+                        <div class="hero-content-bottom">
+                            <h1 class="heading-xl-regular-fluid">
+                                Key player of molecular <br />
+                                diagnostics production <br />
+                                in Indonesia
+                            </h1>
+                            <p class="hero-headline">We are Indonesia's leading molecular diagnostics manufacturer. We combine a modern, CPAKB certified facility with proprietary quality controls to produce export&#x2011;grade rapid tests entirely in&#x2011;country.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <section class="hero-section"></section>
         </template>
-
-        <!-- Scripts -->
-        <script type="module" src="./App.js"></script>
-        <script type="module" src="./script2.js"></script>
     </body>
 </html>

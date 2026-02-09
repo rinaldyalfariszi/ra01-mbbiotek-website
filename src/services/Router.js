@@ -1,4 +1,4 @@
-import { pageTransitionEnter, pageTransitionLeave } from '../animations'
+import { Transition } from '../animations'
 
 const Route =
 {
@@ -19,11 +19,12 @@ const Route =
         // Event Handler for URL changes
         window.addEventListener("popstate", event =>
         {
-            Route.go(event.state.route, false)
+            const route = event.state?.route || location.pathname
+            Route.go(route, false)
         })
 
         // Go to initial URL (current page URL)
-        Route.go(location.pathname)
+        Route.go(location.pathname, false)
     },
     setMetaData(title)
     {
@@ -31,7 +32,19 @@ const Route =
     },
     go: async (route, addToHistory = true) =>
     {
-        console.log(`Going to ${route}`)
+        if (App.isTransitioning)
+        {
+            addToHistory = false
+            console.log('Transition in progress, ignoring navigation')
+            return
+        }
+
+        if (addToHistory && location.pathname === route) {
+            console.log(`Already at the "${ route }", ignoring navigation`)
+            return
+        }
+
+        // console.log(`Going to ${route}`)
         
         // If 'addtoHistory' enabled, then push the new route to the browser history stack
         if (addToHistory)
@@ -58,23 +71,14 @@ const Route =
                 break;
         }
 
-        console.log(`currentRoute: ${route} | routes: ${Route.routes} | length: ${Route.routes.length}`)
-
         // Clean up current page element when changing to new page URL
         if (pageElement)
         {
-            const cache = document.querySelector("main")
-            cache.replaceChildren(pageElement)
+            const mainElement = document.querySelector("main")
+            await Transition.outro()
+            mainElement.replaceChildren(pageElement)
             window.scrollTo(0, 0)
-
-            if (route !== Route.routes)
-            {
-                console.log("Route changed!")
-                
-                pageTransitionEnter(pageElement)
-            }
-            pageTransitionLeave(pageElement)
-            
+            await Transition.intro()
         }
         else
         {

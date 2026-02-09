@@ -1,31 +1,62 @@
-import Route from './services/Route.js'
+import Route from './services/Router.js'
+import { Transition } from './animations'
 
-import { pageTransitionEnter } from './animations'
+import { HomePage } from './components/HomePage.js'
+import { AboutPage } from './components/AboutPage.js'
 
-import Lenis from "lenis"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { SplitText } from "gsap/SplitText"
-import { CustomEase } from "gsap/CustomEase"
+import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
+import { CustomEase } from 'gsap/CustomEase'
 
-window.App = {
-    router: new Route()
-}
+globalThis.App = {}
 
-window.addEventListener("DOMContentLoaded", async () =>
+App.router = Route
+App.transition = Transition
+App.isTransitioning = false
+
+globalThis.addEventListener("DOMContentLoaded", async () =>
 {
-    // App.router.init()
-    App.router
-})
-
-window.addEventListener("DOMContentLoaded", async () =>
-{
-
-    // --------------------------------------------------------------------
-
     gsap.registerPlugin(SplitText, CustomEase)
 
-    const lenis = new Lenis({
+    App.router.init()
+    console.log('App Initiated')
+
+    CustomEase.create("o6", "M0,0 C0.19,1 0.22,1 1,1")
+    CustomEase.create("o2", "M0,0 C0.25,0.46 0.45,0.94 1,1")
+    CustomEase.create("io1", "0.87, 0, 0.13, 1")
+
+
+    gsap.config({
+        force3D: "auto"
+    })
+
+    lenisScroll()
+    menuNavigationToggler()
+})
+
+
+function menuNavigationToggler()
+{
+    const navToggle = document.querySelector('[aria-controls="primary-nav"]')
+
+    navToggle.addEventListener("click", (event) =>
+    {
+        event.stopImmediatePropagation()
+        const isOpen = navToggle.ariaExpanded === 'true'
+        navToggle.ariaExpanded = String(!isOpen)
+
+        console.log('Nav is now:', !isOpen ? 'OPEN' : 'CLOSED')
+    })
+}
+
+
+
+function lenisScroll()
+{
+    const lenis = new Lenis(
+    {
         lerp: 0.05
     })
 
@@ -90,39 +121,46 @@ window.addEventListener("DOMContentLoaded", async () =>
             lenis.stop()
         }
     })
+}
 
-    // ------------- your GSAP text animation (unchanged) -------------
-    // let split
-    // let tl = gsap.timeline()
 
-    CustomEase.create("o6", "M0,0 C0.19,1 0.22,1 1,1")
 
-    CustomEase.create("o2", "M0,0 C0.25,0.46 0.45,0.94 1,1")
 
-    function textRevealHeading() {
-        let split
-        let tl = gsap.timeline()
-        split = new SplitText("p", { type: "lines", linesClass: "u-generated-text-lines" })
-        gsap.set(".hero-section", { autoAlpha: 1 })
+function getScrollBarWidthSimple()
+{
+    /**
+     * Less accurate
+     */
+    let scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
+    const browserScrollWidth = scrollbarWidth
+    console.log(browserScrollWidth)
+}
 
-        split.lines.forEach((line, index) => {
-            let split = new SplitText(line, {type: "lines"})
-            tl.from(split.lines, { duration: 2.2, yPercent: 100, ease: "o6", skewX: 0.1 }, ">-95%")
-        })
-    }
+function getScrollBarWidthAdvanced()
+{
+    /**
+     * More accurate
+     */
+    // Create a temporary div element
+    var scrollDiv = document.createElement("div");
 
-    function textRevealBody() {
-        let split
-        let tl = gsap.timeline()
-        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-text-lines" })
-        gsap.set(".hero-section", { autoAlpha: 1 })
+    // Apply CSS to force a scrollbar and hide it off-screen
+    scrollDiv.style.width = '100px';
+    scrollDiv.style.height = '100px';
+    scrollDiv.style.overflow = 'scroll';
+    scrollDiv.style.position = 'absolute';
+    scrollDiv.style.top = '-9999px'; // Move it off-screen
 
-        split.lines.forEach((line, index) => {
-            let split = new SplitText(line, {type: "lines"})
-            tl.from(split.lines, { duration: 2.2, yPercent: 100, ease: "o6", skewX: 0.1 }, ">-88%")
-        })
-    }
+    document.body.appendChild(scrollDiv);
 
-    textRevealBody()
-    textRevealHeading()
-})
+    // Calculate the scrollbar width
+    // offsetWidth includes the border and scrollbar
+    // clientWidth includes the padding but not the border or scrollbar
+    var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+    console.log(scrollbarWidth); // Log the result
+
+    // Remove the temporary div
+    document.body.removeChild(scrollDiv);
+
+    return scrollbarWidth;
+}

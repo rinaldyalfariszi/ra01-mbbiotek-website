@@ -53,6 +53,18 @@
         line-height: 1;
     }
 
+    h1,
+    h2,
+    h3,
+    h4 {
+        text-wrap: balance;
+    }
+
+    p,
+    li {
+        text-wrap: pretty;
+    }
+    
     img,
     picture {
         max-inline-size: 100%;
@@ -117,7 +129,7 @@
         /* Color */
         --p-clr-white: #FEFEFE;
         --p-clr-black: #0A0A0A;
-        --p-clr-dark-900: #020D0F;
+        --p-clr-dark-900: #000000;
         --p-clr-gradient-100: linear-gradient(180deg,#020d0f00 0%, #0F0520 100%);
         --p-clr-gradient-200: linear-gradient(180deg,#0F0520 0%, #001E2A 100%);
         --p-clr-gradient-300: linear-gradient(180deg,#001E2A 0%, #0F000E 100%);
@@ -153,6 +165,7 @@
         --p-ft-widest: 0.12em;
 
         /* Custom Viewport Width - Scrollbar Width */
+        --p-sbw-offset: 100%;
         --p-sbw: 15px;
         --p-100vw: calc(100vw - var(--p-sbw, 0px));
 
@@ -276,9 +289,9 @@
         color: var(--s-text-brand-light);
     }
 
-    img {
+    /* img {
         border-radius: var(--s-border-radius-3);
-    }
+    } */
 }
 
 
@@ -305,6 +318,32 @@
 
         @media (width > 3840px) {
             margin-inline: auto;
+        }
+    }
+
+    .wrapper-dummy {
+		--wrapper-max-width: 1130px;
+        --wrapper-overflow: visible;
+        
+        max-width: calc(var(--wrapper-max-width) + 2rem);
+        margin-inline: auto;
+        padding-inline: 1rem;
+        overflow: var(--wrapper-overflow);
+
+        &[data-width="narrow"] {
+            --wrapper-max-width: 720px;
+        }
+
+        &[data-width="wide"] {
+            --wrapper-max-width: 1340px;
+        }
+
+        &[data-width="full"] {
+            --wrapper-max-width: 100vw;
+        }
+
+        &[data-overflow="hidden"] {
+            --wrapper-overflow: hidden;
         }
     }
 
@@ -352,6 +391,82 @@
  * ============================================================
  */
  @layer components {
+
+    /* == Site Header Styling == */
+    .site-header {
+        position: fixed;
+        width: 100%;
+        padding-block: 1rem;
+        padding-inline: 2.25rem;
+        z-index: 998;
+    }
+
+    .site-header__inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    [aria-controls="primary-nav"] {
+        z-index: 998;
+        cursor: pointer;
+        background: transparent;
+        border: 0;
+        color: #FFFFFF;
+        display: none;
+    }
+
+    .primary-navigation {
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 2.25rem;
+        }
+
+        a {
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        a:hover {
+            opacity: 1;
+        }
+
+        @media (width < 960px) {
+            display: none;
+            position: absolute;
+            z-index: 997;
+            top: 0;
+            right: 0;
+            background-color: #001E2A;
+            padding: 2rem;
+
+            ul {
+                gap: 0;
+                flex-direction: column;
+            }
+
+            * + * {
+                margin-block-start: 1.5rem;
+                padding-block-start: 1.5rem;
+                border-top: 0.1px solid #FEFEFE;
+            }
+
+            [aria-expanded="true"] ~ & {
+                display: block;
+            }
+        }
+    }
+
+    @media (width < 960px) {
+        [aria-controls="primary-nav"] {
+            display: block;
+        }
+    }
+
     /* == Semantic Font Component == */
     .hero-headline {
         color: #FFFFFF;
@@ -395,17 +510,17 @@
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
 
-    .sail {
+    #sail {
         position: fixed;
         left: 0;
         top: 0;
         height: 100%;
-        z-index: 9994;
+        z-index: 999;
         background: #000000;
         will-change: opacity;
         width: 100%;
         pointer-events: none;
-        opacity: 0
+        opacity: 1
     }
 }
 
@@ -450,6 +565,20 @@
     }
 }
 
+#app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    /* visibility: hidden; */
+    will-change: transform, opacity;
+}
+
+#app.loaded {
+    position: static;
+    /* overflow: hidden; */
+}
 
 /* @keyframes move-out {
     from {
