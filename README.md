@@ -72,4 +72,8 @@ Monday, 09 February 2026
 Tuesday, 10 February 2026
 - Continue developing the navigation bar
 
+Wednesday, 11 February 2026
+- Refactored the Transition.js slide up animation to work on each page element instead of whole App element
+- Continue developing the navigation bar
+
 </details>
