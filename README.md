@@ -76,4 +76,10 @@ Wednesday, 11 February 2026
 - Refactored the Transition.js slide up animation to work on each page element instead of whole App element
 - Continue developing the navigation bar
 
+Thursday, 12 February 2026
+- Designed the hero section for mobile view
+- Developing the website to be responsive to mobile view
+- Make the images in the website not draggable and not selectable to improve user experience
+- Developing the responsive navigation bar
+
 </details>
