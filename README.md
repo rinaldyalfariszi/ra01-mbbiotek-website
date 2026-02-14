@@ -82,4 +82,12 @@ Thursday, 12 February 2026
 - Make the images in the website not draggable and not selectable to improve user experience
 - Developing the responsive navigation bar
 
+Friday, 13 February 2026
+- Created main button CTA and ghost button CTA
+- Developed the main button CTA interactive background gradient
+
+Saturday, 14 February 2026
+- Fixed the antialiasing problem on ghost button CTA border pixel size by adjusting it to high pixel density screen, this is to prevent antialiasing on lower pixel density screen
+- Styling new section for the website
+
 </details>
