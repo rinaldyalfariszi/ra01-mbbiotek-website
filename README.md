@@ -90,4 +90,8 @@ Saturday, 14 February 2026
 - Fixed the antialiasing problem on ghost button CTA border pixel size by adjusting it to high pixel density screen, this is to prevent antialiasing on lower pixel density screen
 - Styling new section for the website
 
+Sunday, 15 February 2026
+- Fixing the hero image wrapper (container) size
+- Refactoring whole CSS architecture to mobile first styling
+
 </details>
