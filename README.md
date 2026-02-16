@@ -94,4 +94,8 @@ Sunday, 15 February 2026
 - Fixing the hero image wrapper (container) size
 - Refactoring whole CSS architecture to mobile first styling
 
+Monday, 16 February 2026
+- Fixing the unresponsive hero section layout
+- Styling some element to prevent shrinking at higher resolution (more than 2000px)
+
 </details>
