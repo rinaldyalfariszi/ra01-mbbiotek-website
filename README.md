@@ -98,4 +98,9 @@ Monday, 16 February 2026
 - Fixing the unresponsive hero section layout
 - Styling some element to prevent shrinking at higher resolution (more than 2000px)
 
+Tuesday, 17 February 2026
+- Clean up some naming convention for CSS custom properties
+- Learning GSAP ScrollTrigger in-depth
+- Integrate Tweakpane plugin for real-time debugging
+
 </details>
