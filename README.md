@@ -103,4 +103,9 @@ Tuesday, 17 February 2026
 - Learning GSAP ScrollTrigger in-depth
 - Integrate Tweakpane plugin for real-time debugging
 
+Wednesday, 18 February 2026
+- Add Contact Us button to the site header
+- Fix bottom margin of the Main CTA and Ghost CTA buttons
+- Add light rays image as the background for hero section
+
 </details>
