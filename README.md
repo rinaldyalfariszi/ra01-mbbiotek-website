@@ -111,4 +111,7 @@ Wednesday, 18 February 2026
 Thursday, 19 February 2026
 - Developing section 2 for the home page
 
+Friday, 20 February 2026
+- Developing cards style for the website
+
 </details>
