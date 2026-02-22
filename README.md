@@ -114,4 +114,11 @@ Thursday, 19 February 2026
 Friday, 20 February 2026
 - Developing cards style for the website
 
+Saturday, 21 February 2026
+- Add header and content to the home page section 2
+
+Sunday, 22 February 2026
+- Made the home page section 2 responsive
+- Finish development of the home page section 2
+
 </details>
