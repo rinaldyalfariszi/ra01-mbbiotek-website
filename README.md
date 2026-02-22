@@ -116,6 +116,7 @@ Friday, 20 February 2026
 
 Saturday, 21 February 2026
 - Add header and content to the home page section 2
+- Developed custom gradient CTA button
 
 Sunday, 22 February 2026
 - Made the home page section 2 responsive
