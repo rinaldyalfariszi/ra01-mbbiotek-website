@@ -125,4 +125,8 @@ Sunday, 22 February 2026
 Monday, 23 February 2026
 - Developing home page section 3
 
+Tuesday, 24 February 2026
+- Designed the mobile version for the home page
+- Clean up some text sizes that were too small
+
 </details>
