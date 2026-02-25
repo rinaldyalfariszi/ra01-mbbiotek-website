@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MBBiotek New Website</title>
 
-        <link rel="stylesheet" href="./style2.css" />
+        <link rel="stylesheet" href="./style-mfirst.css" />
         <script type="module" src="./App.js" defer></script>
 
         <style>
@@ -13,15 +13,17 @@
         </style>
     </head>
     <body>
-        <!-- Sail -->
+        <!-- ──────────────────────── Sail ──────────────────────── -->
         <div id="sail"></div>
 
-        <!-- Site Header -->
+        <!-- ──────────────────────── Site Header ──────────────────────── -->
         <header class="site-header">
-            <div class="wrapper" data-wrapper-width="max-content">
-                <div class="site-header__inner">
-                    <div>
-                        <img class="logo" src="images/company-logo-white.png" alt="" />
+            <div class="wrapper">
+                <div class="site-header-content">
+                    <div class="logo">
+                        <a href="/">
+                            <img src="images/company-logo-white-512.svg" alt="Company Logo" />
+                        </a>
                     </div>
                     <button aria-controls="primary-nav" aria-expanded="false">
                         <span>Menu</span>
@@ -35,21 +37,33 @@
                             <li><a class="navlink" href="/partners">Partners</a></li>
                         </ul>
                     </nav>
+                    <a class="cta navlink u-hide-on-tablet" href="/about">
+                        <span class="cta-bg"></span>
+                        <span class="cta-txt">Contact us ◦</span>
+                        <span class="cta-icon"></span>
+                    </a>
                 </div>
             </div>
         </header>
+
         <div id="app">
-            <!-- Site Main -->
+            <!-- ──────────────────────── Site Main ──────────────────────── -->
             <main></main>
         </div>
 
-        <!-- Templates -->
+        <!-- ──────────────────────── Home Page Template ──────────────────────── -->
         <template id="home-page-template">
-            <section class="hero-section">
-                <div class="wrapper" data-wrapper-width="max-content">
-                    <div class="hero-content">
+            <!-- Home Page - Section 1 (Hero) -->
+            <section class="hero-section has-scrolltrigger">
+                <img class="light-rays-dummy" src="images/light-rays.png" alt="" />
+                <div class="wrapper">
+                    <div class="hero-content content">
                         <!-- Row 1 -->
-                        <img class="hero-image" src="images/cgi-1.png" alt="" />
+                        <div class="cgi">
+                            <figure>
+                                <img class="hero-image" src="images/cgi-1.png" alt="" />
+                            </figure>
+                        </div>
 
                         <!-- Row 2 -->
                         <div class="hero-content-bottom">
@@ -58,28 +72,108 @@
                                 molecular diagnostics <br />
                                 and enhancing lives
                             </h1>
-                            <p class="hero-headline">Contribute to the advancement of the early detection and treatment of infectious and non&#x2011;communicable diseases. Promote Molecular Based precision healthcare ecosystem.</p>
+                            <div class="hero-content-bottom-second">
+                                <p class="hero-headline">
+                                    Contribute to the advancement of the early detection and
+                                    treatment of infectious and non&#x2011;communicable diseases.
+                                    Promote Molecular Based precision healthcare ecosystem.
+                                </p>
+
+                                <div class="hero-button-group">
+                                    <a class="cta" href="#xxx">
+                                        <span class="cta-border">
+                                            <div></div>
+                                        </span>
+                                        <span class="cta-txt">Discover</span>
+                                        <span class="cta-icon"></span>
+                                    </a>
+                                    <a class="cta navlink" href="/about">
+                                        <span class="cta-bg"></span>
+                                        <span class="cta-txt">See products -></span>
+                                        <span class="cta-icon"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="hero-section"></section>
-        </template>
 
-        <template id="about2-page-template">
-            <section class="hero-section">
-                <h1>About Page</h1>
+            <!-- Home Page - Section 2 -->
+            <section class="common-section has-scrolltrigger" id="xxx">
+                <div class="wrapper">
+                    <div class="home-section-2-content content">
+                        <!-- Row 1 -->
+                        <div>
+                            <header>
+                                <h2 class="heading-lg-light-fluid">
+                                    Quality, Innovation, and <br class="u-hide-on-mobile" />
+                                    Partnership at Our Core
+                                </h2>
+                            </header>
+                            <a class="cta navlink">
+                                <span class="cta-border-gradient">
+                                    <div></div>
+                                </span>
+                                <span class="cta-txt">
+                                    <p><span class="u-text-gradient">Learn more</span></p>
+                                </span>
+                                <span class="cta-icon"></span>
+                            </a>
+                        </div>
+
+                        <!-- Row 2, 3 card columns -->
+                        <div class="grid-equal-columns">
+                            <div class="card u-padding-0">
+                                <img src="images/icon-shield.svg" alt="" class="u-icon-md" />
+                                <h3 class="heading-2xs-regular-fluid">Local Manufacturing</h3>
+                                <p class="body-regular-light-fluid">
+                                    Our CPAKB certified facility in Indonesia operates under strict
+                                    GMP standards to ensure quality at every step
+                                </p>
+                            </div>
+                            <div class="card u-padding-0">
+                                <img src="images/icon-dna.svg" alt="" class="u-icon-md" />
+                                <h3 class="heading-2xs-regular-fluid">
+                                    Proprietary, Quality Assured
+                                </h3>
+                                <p class="body-regular-light-fluid">
+                                    From raw material development to regulatory assistance, we
+                                    provide integrated solutions
+                                </p>
+                            </div>
+                            <div class="card u-padding-0">
+                                <img src="images/icon-handshake.svg" alt="" class="u-icon-md" />
+                                <h3 class="heading-2xs-regular-fluid">Strategic Partnerships</h3>
+                                <p class="body-regular-light-fluid">
+                                    Collaborating with industry stakeholders to drive advancements
+                                    in diagnostic technology and solve key healthcare challenges
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
-            <section class="hero-section"></section>
-            <section class="hero-section"></section>
+
+            <!-- Home Page - Section 3 -->
+            <section class="hero-section has-scrolltrigger">
+                <div class="content"></div>
+            </section>
         </template>
 
+        <!-- ──────────────────────── About Page Template ──────────────────────── -->
         <template id="about-page-template">
-            <section class="hero-section">
-                <div class="wrapper" data-wrapper-width="max-content">
+            <!-- About Page - Section 1 -->
+            <section class="hero-section has-scrolltrigger">
+                <img class="light-rays-dummy" src="images/light-rays.png" alt="" />
+                <div class="wrapper">
                     <div class="hero-content">
                         <!-- Row 1 -->
-                        <img class="hero-image" src="images/cgi-1.png" alt="" />
+                        <div class="cgi">
+                            <figure>
+                                <img class="hero-image" src="images/cgi-1.png" alt="" />
+                            </figure>
+                        </div>
 
                         <!-- Row 2 -->
                         <div class="hero-content-bottom">
@@ -88,12 +182,36 @@
                                 diagnostics production <br />
                                 in Indonesia
                             </h1>
-                            <p class="hero-headline">We are Indonesia's leading molecular diagnostics manufacturer. We combine a modern, CPAKB certified facility with proprietary quality controls to produce export&#x2011;grade rapid tests entirely in&#x2011;country.</p>
+                            <div class="hero-content-bottom-second">
+                                <p class="hero-headline">
+                                    We are Indonesia's leading molecular diagnostics manufacturer.
+                                    We combine a modern, CPAKB certified facility with proprietary
+                                    quality controls to produce export-grade rapid tests entirely
+                                    in-country.
+                                </p>
+
+                                <div class="hero-button-group">
+                                    <a class="cta navlink">
+                                        <span class="cta-border">
+                                            <div></div>
+                                        </span>
+                                        <span class="cta-txt">Discover</span>
+                                        <span class="cta-icon"></span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="hero-section"></section>
+
+            <!-- About Page - Section 2 -->
+            <section class="common-section has-scrolltrigger">
+                <header>
+                    <p class="eyebrow">Our Mission <span class="visually-hidden">is to</span></p>
+                    <h2>Improving early detection and treatment</h2>
+                </header>
+            </section>
         </template>
     </body>
 </html>

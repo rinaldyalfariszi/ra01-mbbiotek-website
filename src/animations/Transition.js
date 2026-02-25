@@ -1,13 +1,32 @@
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const Transition =
 {
+    _splitInstances: [],
+    cleanup: () =>
+    {
+        Transition._splitInstances.forEach(split => {
+            if (split && split.revert) {
+                split.revert()
+            }
+        })
+        Transition._splitInstances = []
+        
+        // Reset page element transforms
+        gsap.set("home-page, about-page", { clearProps: "all" })
+        
+        // Reset common animated elements
+        gsap.set("h1, h2, h3, p, a", { clearProps: "all" })
+    },
     intro: () =>
     {
+        Transition.cleanup()
+
         const introTimeline = gsap.timeline(
         {
-            onStart: () => { App.isTransitioning = true },
+            onStart: () => { App.isTransitioning = true, ScrollTrigger.refresh() },
             onComplete: () => { App.isTransitioning = false }
         })
         
@@ -35,14 +54,18 @@ const Transition =
     },
     introPageSlideUp: () =>
     {
-        const tl = gsap.timeline(
-        {
-            onComplete: () => { document.querySelector('#app').classList.add('loaded') }
-        })
+        const tl = gsap.timeline()
+        
+        const currentPage = document.querySelector("main > *")
+        
+        if (!currentPage) {
+            console.warn("No page element found")
+            return tl
+        }
 
         tl
-            .set("#app", { autoAlpha: 1 })
-            .from("#app", { duration: 2, yPercent: 100, opacity: 1, skewX: 0.1, ease: "o6" })
+            .set(currentPage, { autoAlpha: 1 })
+            .from(currentPage, { duration: 2, yPercent: 100, opacity: 1, skewX: 0.1, ease: "o6" })
 
         return tl
     },
@@ -51,7 +74,7 @@ const Transition =
         const tl = gsap.timeline()
             
         tl
-            .add(Transition.textRevealA(), "0")
+            // .add(Transition.textRevealA(), "0")
             .add(Transition.textRevealHeading(), "0")
             .add(Transition.textRevealBody(), "0.2")
         
@@ -61,7 +84,9 @@ const Transition =
     {
         let split
         let tl = gsap.timeline()
-        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-text-lines" })
+        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
+
+        Transition._splitInstances.push(split)
     
         split.lines.forEach((line, index) => {
             let split = new SplitText(line, {type: "lines"})
@@ -74,7 +99,9 @@ const Transition =
     {
         let split
         let tl = gsap.timeline()
-        split = new SplitText("p", { type: "lines", linesClass: "u-generated-text-lines" })
+        split = new SplitText("p", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
+
+        Transition._splitInstances.push(split)
 
         const lineCount = split.lines.length
         const durationPerLine = 2.2
@@ -92,6 +119,7 @@ const Transition =
         
         const allLines = split.lines.map(line => {
             let lineSplit = new SplitText(line, {type: "lines"})
+            Transition._splitInstances.push(lineSplit)
             return lineSplit.lines[0]
         })
         
@@ -110,7 +138,9 @@ const Transition =
     textRevealA: () =>
     {
         let split
-        split = new SplitText("a", { type: "lines", linesClass: "u-generated-text-lines" })
+        split = new SplitText("a", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
+        Transition._splitInstances.push(split)
+
         let tl = gsap.timeline()
         
         tl.from(split.lines, { duration: 2.2, yPercent: 100, skewX: 0.1, ease: "o6" })
@@ -129,7 +159,7 @@ const Transition =
     {
         const tl = gsap.timeline()
 
-        tl.to("#sail", { duration: 0.875, opacity: 1, skewX: 0.1, ease: "io1" })
+        tl.to("#sail", { duration: 0.575, opacity: 1, skewX: 0.1, ease: "io1" })
 
         return tl
     }

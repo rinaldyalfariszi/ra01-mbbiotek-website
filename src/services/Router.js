@@ -32,29 +32,24 @@ const Route =
     },
     go: async (route, addToHistory = true) =>
     {
-        if (App.isTransitioning)
-        {
-            addToHistory = false
-            console.log('Transition in progress, ignoring navigation')
-            return
-        }
+        // if (App.isTransitioning)
+        // {
+        //     addToHistory = false
+        //     console.log('Transition in progress, ignoring navigation')
+        //     return
+        // }
 
         if (addToHistory && location.pathname === route) {
             console.log(`Already at the "${ route }", ignoring navigation`)
             return
         }
 
-        // console.log(`Going to ${route}`)
-        
-        // If 'addtoHistory' enabled, then push the new route to the browser history stack
         if (addToHistory)
         {
             history.pushState({ route }, '', route)
         }
 
-        // Render 'pageElement' based on route
         let pageElement = null
-
         switch (route)
         {
             case "/": 
@@ -71,13 +66,27 @@ const Route =
                 break;
         }
 
-        // Clean up current page element when changing to new page URL
         if (pageElement)
         {
             const mainElement = document.querySelector("main")
+            
             await Transition.outro()
             mainElement.replaceChildren(pageElement)
-            window.scrollTo(0, 0)
+
+            if (App.lenis)
+            {
+                App.lenis.scrollTo(0,
+                { 
+                    immediate: true,
+                    force: true,
+                    lock: true
+                })
+            }
+            else
+            {
+                window.scrollTo(0, 0)
+            }
+
             await Transition.intro()
         }
         else

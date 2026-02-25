@@ -1,4 +1,12 @@
 /**
+ * Fluid sizes (global size) are -> font-size, margin, padding, gap, width, height, cols 
+/*
+
+/* TODO: Add clamp to the <a> element */
+/* TODO: Add clamp to the wrapper padding inline*/
+/* TODO: Fix the hero-content-bottom margin-inline wrapper bug */
+
+/**
  * ============================================================
  * Reset
  * ============================================================
@@ -168,15 +176,14 @@
 
         /* Font Tracking (Letter Spacing) */
         --p-ft-tightest: -0.12em;
-        --p-ft-tighter: -0.01em;  /* -1% */
-        --p-ft-tight: -0.006em;   /* -0.06% */
+        --p-ft-tighter: -0.01em;  /* Figma: -1% */
+        --p-ft-tight: -0.006em;   /* Figma: -0.06% */
         --p-ft-normal: 0em;
-        --p-ft-wide: 0.006em;     /* 0.06% */
-        --p-ft-wider: 0.01em;     /* 1% */
+        --p-ft-wide: 0.006em;     /* Figma: 0.06% */
+        --p-ft-wider: 0.01em;     /* Figma: 1% */
         --p-ft-widest: 0.12em;
 
         /* Custom viewport width respect scrollbar width */
-        --p-sbw-offset: 100%;
         --p-sbw: 15px;
         --p-100vw: calc(100vw - var(--p-sbw, 0px));
 
@@ -190,16 +197,24 @@
 
         --p-container-padding: clamp(1.25em, 4vw, 2.5em);
         --p-o6: cubic-bezier(.16, 1, .3, 1);
-        --p-header-height: 100px;
         --p-padding-inline: 6vw;
-
+        
         --hero-img-min: 320px;
-        --hero-img-max: 786px;
-
+        --hero-img-max: 700px;
+        
         --cgi-size: clamp(320px, 10vw, 786px);
-
+        
         --viewport-min: 200px;
         --viewport-max: 1920px;
+        
+        /* Persisted Size */
+        --p-header-height: 100px;
+        --p-image-hero-size: clamp(--viewport-min, 60vw, var(--hero-img-max));
+        /* --p-wrapper-width-default: 1742px; */
+        --p-wrapper-width-default: calc(100vw + 0px);
+        --p-wrapper-width-large: 3840px;
+        --p-wrapper-padding-inline: clamp(32px, 3vw, 88px);
+        /* --p-wrapper-padding-inline: 88px; */
 
         /* Global Size (Fluid) */
         /* https://utopia.fyi/clamp/calculator/?a=390,1699,16%E2%80%9420|48%E2%80%9484|48%E2%80%94120|64%E2%80%94120&p=p-gs */
@@ -209,11 +224,21 @@
         --p-gs-16-20: clamp(16px, 14.8083px + 0.3056vw, 20px);
         --p-gs-12-20: clamp(12px, 9.6165px + 0.6112vw, 20px);
 
+        /* Keep element consistent beyond 2000px resolution */
         @media (width > 2000px) {
             --p-gs-48-120: 6vw;
             --p-gs-48-84: 4.2vw;
+            --p-gs-32-84: 4.2vw;
             --p-gs-16-20: 1vw;
             --p-gs-12-20: 1vw;
+
+            --p-header-height: 5vw;
+            --p-image-hero-size: 35vw;
+            --p-hero-img-max: 35vw;
+            /* --p-wrapper-width-default: 56.5vw; */
+            /* --p-wrapper-width-default: 87.1vw; */
+            --p-wrapper-width-large: 192vw;
+            --p-wrapper-padding-inline: 4.4vw;
         }
     }
 
@@ -279,6 +304,7 @@
         /* Semantic Global Size (Fluid) */
         --s-global-size-48-120: var(--p-gs-48-120);
         --s-global-size-48-84: var(--p-gs-48-84);
+        --s-global-size-32-84: var(--p-gs-32-84);
         --s-global-size-16-20: var(--p-gs-16-20);
         --s-global-size-12-20: var(--p-gs-12-20);
 
@@ -327,10 +353,6 @@
     a:focus-visible {
         color: var(--s-text-brand-light);
     }
-
-    /* img {
-        border-radius: var(--s-border-radius-3);
-    } */
 }
 
 
@@ -345,49 +367,29 @@
  @layer layout {
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Wrapper
+    /* Wrapper max width will match the Figma measurement by adding more space
+    /* which is the left & right padding
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .wrapper {
-        --wrapper-max-width: 1130px;
+        --wrapper-max-width: var(--p-wrapper-width-default);
+        --wrapper-padding-inline: var(--p-wrapper-padding-inline);
         
-        max-width: calc(var(--wrapper-max-width) + 0rem); /* Match Figma measurement */
-        padding-inline: 2.5rem;
-        /* margin-inline: auto; */
-        margin-inline: 0;
+        max-width: calc(var(--wrapper-max-width) + var(--wrapper-padding-inline) * 2);
+        padding-inline: var(--wrapper-padding-inline);
+        /* padding-inline: 0; */
+        margin-inline: calc((100vw - var(--wrapper-max-width)) / 2);
+        /* border: 1px dashed yellowgreen; */
 
         &[data-wrapper-width="max-content"] {
-            --wrapper-max-width: 3840px;
+            --wrapper-max-width: var(--p-wrapper-width-large);
         }
 
-        @media (width > 3840px) {
-            margin-inline: auto;
-        }
-    }
-
-    .wrapper-dummy {
-		--wrapper-max-width: 1130px;
-        --wrapper-overflow: visible;
-        
-        max-width: calc(var(--wrapper-max-width) + 2rem);
-        margin-inline: auto;
-        padding-inline: 1rem;
-        overflow: var(--wrapper-overflow);
-
-        &[data-width="narrow"] {
-            --wrapper-max-width: 720px;
-        }
-
-        &[data-width="wide"] {
+        &[data-wrapper-width="wide"] {
             --wrapper-max-width: 1340px;
         }
-
-        &[data-width="full"] {
-            --wrapper-max-width: 100vw;
-        }
-
-        &[data-overflow="hidden"] {
-            --wrapper-overflow: hidden;
-        }
     }
+
+    
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Hero Section
@@ -398,61 +400,57 @@
         min-height: 100svh;
         width: 100%;
         justify-content: flex-end;
-        align-items: center;
         background: var(--s-background-accent-main);
         padding-block-start: var(--p-header-height);
         /* padding-block-start: calc(100% - (var(--p-header-height) / 100svh)); */
         /* visibility: hidden; /* Fix FOUC (Flash of Unstyled Content) */
+        /* border: 1px dashed white; */
     }
-
-    /* .hero-image {
-        display: flex;
-        align-items: center;
-        margin-inline: auto;
-        width: 786px;
-        height: 647px;
-        aspect-ratio: 16/9;
-    } */
 
     .hero-image {
         display: block;
         width: 100%;
-        max-width: 100%;
-        margin-inline: auto;
-        aspect-ratio: var(--p-ratio-hero);
-        object-fit: cover;
-        height: auto;
-        /* padding-inline: 2rem; */
-    }
-    
-    figure {
-        vertical-align: middle;
-    }
-
-    .cgix {
-        /* Mathematical scaling formula */
-        width: clamp(var(--hero-img-min),
-            calc(
-                var(--hero-img-min)
-                + (var(--hero-img-max) - var(--hero-img-min))
-                * ((100vw - var(--viewport-min)) / (var(--viewport-max) - var(--viewport-min)))
-            ),
-            var(--hero-img-max)
-        );
-        align-self: center;
-        border: 1px dashed white;
-        /* margin-bottom: 10vh; */
+        max-height: 100%;
+        aspect-ratio: var(--p-ratio-1-1);
+        object-fit: contain;
+        border: 1px dashed blue;
     }
 
     .cgi {
-        width: clamp(--viewport-min, 60vw, 700px);
+        display: flex;
+        width: 100%;
+        
+        height: calc(50svh - var(--p-header-height));
+        
+        /* height: 50svh; */
         align-self: center;
+        flex-direction: column;
+        justify-content: center;
+        object-fit: contain;
+        border: 1px dashed white;
+
+        &[data-cgi-width="overflow"] {
+            width: calc(100% + var(--wrapper-padding-inline) * 2);
+        }
+
+        figure {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            /* border: 1px dashed beige; */
+        }
     }
 
     .hero-content {
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: stretch;
+        width: 100%;
+        /* gap: 3rem; */
+        border: 1px dashed yellow;
     }
 
     .hero-content-bottom {
@@ -460,6 +458,8 @@
         align-items: stretch;
         gap: clamp(2vw, 4vw, 106px);
         margin-bottom: 64px;
+        margin-top: auto;
+        border: 1px dashed red;
     }
 
     .hero-content-bottom-second {
@@ -483,7 +483,7 @@
         } */
 
         .hero-image {
-            aspect-ratio: var(--p-ratio-hero);
+            /* aspect-ratio: var(--p-ratio-hero); */
         }
 
         .hero-content-bottom {
@@ -519,15 +519,16 @@
         position: fixed;
         width: 100%;
         padding-block: 1rem;
-        padding-inline: 2.25rem;
         z-index: 998;
         height: var(--p-header-height);
+        border: 1px dashed salmon;
     }
 
     .site-header-content {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem 1rem;
+        min-width: 100%;
         justify-content: space-between;
         align-items: center;
     }
@@ -600,17 +601,17 @@
         font-weight: var(--s-font-weight-body-light);
         line-height: 148%; /* 1.85rem */
         margin-top: 16px;
-        max-width: 60vw;
+        /* max-width: 60vw; */
 
         @media (width < 960px) {
             margin-top: 0;
-            max-width: 100%;
+            /* max-width: 100%; */
         }
     }
 
     .heading-xl-regular-fluid {
         min-width: fit-content;
-        font-size: var(--p-gs-32-84);
+        font-size: var(--s-global-size-32-84);
         font-family: var(--s-font-family-heading);
         font-weight: var(--s-font-weight-heading-regular);
         line-height: var(--s-font-leading-heading-xl);
