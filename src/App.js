@@ -31,21 +31,6 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     App.router.init()
     console.log('App Initiated')
 
-    // const pane = new Pane()
-    // pane.dispose();
-
-    // const fSM = pane.addFolder(
-    // {
-    //     title: 'State Management',
-    //     expanded: true
-    // })
-
-    // const DEBUG =
-    // {
-    //     showSTMarkers: false
-    // }
-    
-
     CustomEase.create("o6", "M0,0 C0.19,1 0.22,1 1,1")
     CustomEase.create("o2", "M0,0 C0.25,0.46 0.45,0.94 1,1")
     CustomEase.create("io1", "0.87, 0, 0.13, 1")
@@ -70,14 +55,16 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     navST?.kill()
     navST = createNavST(showAnim, lastDirection)
 
-    // const markerInput = fSM.addBinding(DEBUG, 'showSTMarkers', { label: 'ST markers', readonly: false })
-
-    // Tweakpane - Debug ScrollTrigger markers
-    // markerInput.on('change', () =>
-    // {
-    //     navST?.kill()
-    //     navST = createNavST(DEBUG, showAnim, lastDirection)
-    // })
+    let resizeTimeout = null
+    let delay = 50
+    window.addEventListener('resize', () =>
+    {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() =>
+        {
+            Transition.refreshSplits()
+        }, delay)
+    })
 })
 
 function createNavST(tween, lastDirection)

@@ -7,18 +7,53 @@ const Transition =
     _splitInstances: [],
     cleanup: () =>
     {
+        // Revert all split instances cleanly
         Transition._splitInstances.forEach(split => {
-            if (split && split.revert) {
-                split.revert()
-            }
+            if (split && split.revert) split.revert()
         })
         Transition._splitInstances = []
         
-        // Reset page element transforms
         gsap.set("home-page, about-page", { clearProps: "all" })
-        
-        // Reset common animated elements
         gsap.set("h1, h2, h3, p, a", { clearProps: "all" })
+    },
+    refreshSplits: () =>
+    {
+        // Only run if there's actually a page rendered
+        const hasPage = document.querySelector("main > *")
+        if (!hasPage) return
+
+        // Revert all stale splits first
+        Transition._splitInstances.forEach(split => {
+            if (split && split.revert) split.revert()
+        })
+        Transition._splitInstances = []
+
+        // Re-split heading
+        const h1Split = new SplitText("h1", {
+            type: "lines",
+            linesClass: "u-generated-split-text-lines-container"
+        })
+        Transition._splitInstances.push(h1Split)
+
+        h1Split.lines.forEach(line => {
+            const inner = new SplitText(line, { type: "lines" })
+            Transition._splitInstances.push(inner)
+            // Set to final visible state — NO animation
+            gsap.set(inner.lines, { yPercent: 0, skewX: 0, opacity: 1 })
+        })
+
+        // Re-split body paragraphs
+        const pSplit = new SplitText("p", {
+            type: "lines",
+            linesClass: "u-generated-split-text-lines-container"
+        })
+        Transition._splitInstances.push(pSplit)
+
+        pSplit.lines.forEach(line => {
+            const inner = new SplitText(line, { type: "lines" })
+            Transition._splitInstances.push(inner)
+            gsap.set(inner.lines, { yPercent: 0, skewX: 0, opacity: 1 })
+        })
     },
     intro: () =>
     {
