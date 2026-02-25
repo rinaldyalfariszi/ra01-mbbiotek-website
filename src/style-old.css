@@ -67,7 +67,6 @@
     }
 
     /* == Lenis CSS Setup == */
-    html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth {
         scroll-behavior: auto !important;
     }
@@ -82,12 +81,6 @@
 
     .lenis.lenis.lenis-smooth iframe {
         pointer-events: none;
-    }
-
-    /* class-based approach */
-    .force-scrollbar {
-        scrollbar-gutter: stable;
-        overflow-y: scroll !important; /* force a reserved gutter while stopped */
     }
 }
 
@@ -126,6 +119,40 @@
         --p-ff-1: "Neue Haas Grotesk Display Pro", sans-serif;
         --p-ff-2: "Inter", sans-serif;
 
+        /* Static Font Size */
+        --p-fs-4: 0.25rem;
+        --p-fs-6: 0.375rem;
+        --p-fs-8: 0.5rem;
+        --p-fs-10: 0.625rem;
+        --p-fs-11: 0.688rem;
+        --p-fs-12: 0.75rem;
+        --p-fs-13: 0.813rem;
+        --p-fs-16: 1rem;
+        --p-fs-18: 1.125rem;
+        --p-fs-20: 1.25rem;
+        --p-fs-22: 1.375rem;
+        --p-fs-24: 1.5rem;
+        --p-fs-32: 2rem;
+        --p-fs-36: 2.25rem;
+        --p-fs-40: 2.5rem;
+        --p-fs-48: 3rem;
+        --p-fs-56: 3.5rem;
+        --p-fs-64: 4rem;
+        --p-fs-72: 4.5rem;
+        --p-fs-80: 5rem;
+        --p-fs-84: 5.25rem;
+        --p-fs-88: 5.5rem;
+        --p-fs-96: 6rem;
+        --p-fs-128: 8rem;
+        --p-fs-136: 8.5rem;
+        --p-fs-144: 9rem;
+        --p-fs-152: 9.5rem;
+        --p-fs-160: 10rem;
+
+        /* Fluid Font Size */
+        --p-ffs-0: clamp(0.75rem, 0.6923rem + 0.2564vw, 1rem);
+        /* ??? */
+
         /* Font Weight */
         --p-fw-100: 100;
         --p-fw-200: 200;
@@ -139,8 +166,7 @@
         --p-fw-1000: 1000;
 
         /* Font Leading (Line Height) */
-        --p-fl-none: 1;
-        --p-fl-fit: 1.05;
+        --p-fl-fit: 1;
         --p-fl-84: 84;
 
         /* Font Tracking (Letter Spacing) */
@@ -151,25 +177,6 @@
         --p-ft-wide: 0.006em;     /* 0.06% */
         --p-ft-wider: 0.01em;     /* 1% */
         --p-ft-widest: 0.12em;
-
-        /* Custom Viewport Width - Scrollbar Width */
-        --p-sbw: 15px;
-        --p-100vw: calc(100vw - var(--p-sbw, 0px));
-
-        /* Global Size (Fluid) */
-        /* https://utopia.fyi/clamp/calculator/?a=390,1699,16%E2%80%9420|48%E2%80%9484|48%E2%80%94120|64%E2%80%94120&p=p-gs */
-        --p-gs-48-120: clamp(48px, 26.55px + 5.5vw, 120px);
-        --p-gs-48-84: clamp(48px, 37.2743px + 2.7502vw, 84px);
-        --p-gs-32-84: clamp(32px, 16.5073px + 3.9725vw, 84px);
-        --p-gs-16-20: clamp(16px, 14.8083px + 0.3056vw, 20px);
-        --p-gs-12-20: clamp(12px, 9.6165px + 0.6112vw, 20px);
-
-        @media (width > 2000px) {
-            --p-gs-48-120: 6vw;
-            --p-gs-48-84: 4.2vw;
-            --p-gs-16-20: 1vw;
-            --p-gs-12-20: 1vw;
-        }
     }
 
     /* Semantic Custom Properties */
@@ -312,11 +319,9 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        width: var(--p-100vw);
         justify-content: flex-end;
         align-items: center;
         background: linear-gradient(180deg, #300B23 0%, #200717 100%);
-        visibility: hidden; /* Fix FOUC (Flash of Unstyled Content) */
     }
 
     .hero-image {
@@ -325,7 +330,7 @@
         margin-inline: auto;
         width: 786px;
         height: 647px;
-        aspect-ratio: 16/9;
+        aspect-ratio: 786/647;
     }
 
     .hero-content {
@@ -352,19 +357,29 @@
  * ============================================================
  */
  @layer components {
-    /* == Semantic Font Component == */
+    /* Semantic Font Component */
+    .title-hero {
+        min-width: 792px;
+        max-width: 792px;
+        font-family: var(--s-font-family-heading);
+        font-size: var(--s-font-size-heading-xl);
+        font-weight: var(--s-font-weight-heading-light);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
     .hero-headline {
         color: #FFFFFF;
-        font-size: var(--p-gs-12-20);
+        /* font-size: 1.25rem; */
+        font-size: var(--p-ffs-0);
         font-style: normal;
         font-weight: var(--s-font-weight-body-light);
         line-height: 148%; /* 1.85rem */
-        margin-top: 22px;
     }
 
     .heading-xl-regular-fluid {
         min-width: fit-content;
-        font-size: var(--p-gs-32-84);
+        font-size: 100%;
         font-family: var(--s-font-family-heading);
         font-weight: var(--s-font-weight-heading-regular);
         line-height: var(--s-font-leading-heading-xl);
@@ -393,6 +408,10 @@
         font-weight: var(--s-font-weight-heading-medium);
         line-height: var(--s-font-leading-heading-xl);
         letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
+    h1 {
+        font-size: 100%;
     }
 }
 
@@ -425,41 +444,4 @@
         max-width: 792px;
         visibility: hidden;
     }
-
-    .u-generated-text-lines {
-        overflow: hidden;
-        will-change: transform;
-        /* border: 1px solid red; */
-    }
 }
-
-
-/* @keyframes move-out {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    to {
-        opacity: 0.5;
-        transform: translateY(-35%);
-    }
-}
-
-@keyframes move-in {
-    from {
-        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-    }
-
-    to {
-        clip-path: polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%);
-    }
-}
-
-::view-transition-old(root) {
-    animation: 1.5s cubic-bezier(0.87, 0, 0.13, 1) both move-out
-}
-
-::view-transition-new(root) {
-    animation: 1.5s cubic-bezier(0.87, 0, 0.13, 1) both move-in
-} */

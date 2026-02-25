@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function textRevealHeading() {
         let split
         let tl = gsap.timeline()
-        split = new SplitText("p", { type: "lines", linesClass: "u-generated-text-lines" })
+        split = new SplitText("p", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
         gsap.set(".hero-section", { autoAlpha: 1 })
 
         split.lines.forEach((line, index) => {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function textRevealBody() {
         let split
         let tl = gsap.timeline()
-        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-text-lines" })
+        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
         gsap.set(".hero-section", { autoAlpha: 1 })
 
         split.lines.forEach((line, index) => {
