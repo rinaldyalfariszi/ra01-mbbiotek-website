@@ -226,8 +226,8 @@
         /* https://utopia.fyi/clamp/calculator/?a=390,1699,16%E2%80%9420|48%E2%80%9484|48%E2%80%94120|64%E2%80%94120&p=p-gs */
         --p-us-48-120: clamp(48px, 26.55px + 5.5vw, 120px);
         --p-us-48-84: clamp(48px, 37.2743px + 2.7502vw, 84px);
-        /* --p-us-32-84: clamp(32px, 16.5073px + 3.9725vw, 84px); */
-        --p-us-32-84: clamp(30px, 13.9114px + 4.1253vw, 84px);
+        --p-us-32-84: clamp(32px, 16.5073px + 3.9725vw, 84px);
+        /* --p-us-32-84: clamp(30px, 13.9114px + 4.1253vw, 84px); */
         /* --p-us-32-84: clamp(32px, 19.9333px + 3.7708vw, 84px); /* min @320px */
         --p-us-32-64: clamp(32px, 22.466px + 2.4446vw, 64px);
         --p-us-32-48: clamp(32px, 27.233px + 1.2223vw, 48px);
@@ -237,6 +237,9 @@
         --p-us-20-32: clamp(20px, 16.4248px + 0.9167vw, 32px);
         --p-us-16-20: clamp(16px, 14.8083px + 0.3056vw, 20px);
         --p-us-14-20: clamp(14px, 12.2124px + 0.4584vw, 20px);
+        --p-us-14-18: clamp(14px, 12.8083px + 0.3056vw, 18px);
+        --p-us-14-16: clamp(14px, 13.4041px + 0.1528vw, 16px);
+        --p-us-13-20: clamp(13px, 10.9144px + 0.5348vw, 20px);
         --p-us-12-20: clamp(12px, 9.6165px + 0.6112vw, 20px);
 
         /* Persist sizing beyond 2000px resolution */
@@ -252,6 +255,9 @@
             --p-us-20-32: 1.6vw;
             --p-us-16-20: 1vw;
             --p-us-14-20: 1vw;
+            --p-us-14-18: 0.9vw;
+            --p-us-14-16: 0.8vw;
+            --p-us-13-20: 1vw;
             --p-us-12-20: 1vw;
 
             --g-header-height: 5vw;
@@ -367,7 +373,8 @@
     }
 
     a {
-        color: var(--s-text-high-contrast)
+        color: var(--s-text-high-contrast);
+        font-size: 1rem;
     }
 
     a:hover,
@@ -711,7 +718,7 @@
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .hero-headline {
         color: #FFFFFF;
-        font-size: var(--p-us-12-20);
+        font-size: var(--p-us-14-20);
         font-style: normal;
         font-weight: var(--s-font-weight-body-light);
         line-height: 148%; /* 1.85rem */
@@ -840,9 +847,10 @@
 
     .cta-txt {
         color: white;
-        font-size: var(--s-universal-size-12-20);
+        font-size: var(--p-us-14-18);
         font-weight: var(--s-font-weight-body-light);
         position: relative;
+        /* border: 1px dashed goldenrod; */
     }
 
     .cta-border {
@@ -902,6 +910,27 @@
         }
     }
 
+    .cta-icon {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--p-us-14-18);
+        height: var(--p-us-14-18);
+        flex-shrink: 0;
+        /* border: 1px dashed goldenrod; */
+
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+    }
+
+    .cta-txt + .cta-icon {
+        margin-left: 0.5em;
+    }
+
     .cta:hover .cta-bg {
         transform: translateX(50%);
     }
@@ -939,16 +968,12 @@
 	}
 
     .u-hide-on-mobile {
-        display: block;
-
         @media (width < 550px) {
             display: none;
         }
     }
 
     .u-hide-on-tablet {
-        display: block;
-
         @media (width < 960px) {
             display: none;
         }

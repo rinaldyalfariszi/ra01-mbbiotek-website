@@ -55,6 +55,8 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     navST?.kill()
     navST = createNavST(showAnim, lastDirection)
 
+    // Resize debounce
+    // TODO: Fix debounce called when animation is playing
     let resizeTimeout = null
     let delay = 50
     window.addEventListener('resize', () =>
