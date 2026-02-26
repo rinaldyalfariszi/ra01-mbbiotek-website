@@ -5,6 +5,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 const Transition =
 {
     _splitInstances: [],
+    _pendingRefresh: false,
+    _isRevealingText: false,
     cleanup: () =>
     {
         // Revert all split instances cleanly
@@ -16,8 +18,9 @@ const Transition =
         gsap.set("home-page, about-page", { clearProps: "all" })
         gsap.set("h1, h2, h3, p, a", { clearProps: "all" })
     },
-    refreshSplits: () =>
+    recalculateSplits: async () =>
     {
+        await document.fonts.ready
         // Only run if there's actually a page rendered
         const hasPage = document.querySelector("main > *")
         if (!hasPage) return
@@ -55,8 +58,9 @@ const Transition =
             gsap.set(inner.lines, { yPercent: 0, skewX: 0, opacity: 1 })
         })
     },
-    intro: () =>
+    intro: async () =>
     {
+        await document.fonts.ready
         Transition.cleanup()
 
         const introTimeline = gsap.timeline(
@@ -104,7 +108,7 @@ const Transition =
 
         return tl
     },
-    introTextReveal: () =>
+    introTextRevealOld: () =>
     {
         const tl = gsap.timeline()
             
@@ -113,6 +117,29 @@ const Transition =
             .add(Transition.textRevealHeading(), "0")
             .add(Transition.textRevealBody(), "0.2")
         
+        return tl
+    },
+    introTextReveal: () =>
+    {
+        const tl = gsap.timeline(
+        {
+            onStart: () => { Transition._isRevealingText = true },
+            onComplete: () =>
+            {
+                Transition._isRevealingText = false
+
+                if (Transition._pendingRefresh)
+                {
+                    Transition._pendingRefresh = false
+                    // Transition.recalculateSplits()
+                }
+            }
+        })
+
+        tl
+            .add(Transition.textRevealHeading(), "0")
+            .add(Transition.textRevealBody(), "0.2")
+
         return tl
     },
     textRevealHeading: () =>

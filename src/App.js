@@ -28,6 +28,9 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase)
 
     lenisScroll()
+
+    await document.fonts.ready
+    
     App.router.init()
     console.log('App Initiated')
 
@@ -56,15 +59,25 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     navST = createNavST(showAnim, lastDirection)
 
     // Resize debounce
-    // TODO: Fix debounce called when animation is playing
     let resizeTimeout = null
     let delay = 50
+    let lastWidth = window.innerWidth
+
     window.addEventListener('resize', () =>
     {
+        if (window.innerWidth === lastWidth) return
+
         clearTimeout(resizeTimeout)
         resizeTimeout = setTimeout(() =>
         {
-            Transition.refreshSplits()
+            lastWidth = window.innerWidth
+
+            if (App.isTransitioning || Transition._isRevealingText)
+            {
+                Transition._pendingRefresh = true
+                return
+            }
+            Transition.recalculateSplits()
         }, delay)
     })
 })
