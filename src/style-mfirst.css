@@ -2,11 +2,6 @@
  * Fluid sizes (global size) are -> font-size, margin, padding, gap, width, height, cols 
  */
 
-/**
- * Known Bug:
- * (-) '.hero-content' has overflow bug if content is too long
- */
-
 /* TODO: Add clamp to the <a> element */
 /* TODO: Add clamp to the margin-bottom of hero-content-bottom */
 
@@ -439,6 +434,15 @@
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - Common Section
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .common-section {
+        min-height: 100vh;
+        background: var(--p-clr-white);
+        color: var(--p-clr-black);
+    }
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Hero Section
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .hero-section {
@@ -594,6 +598,8 @@
             margin-bottom: 0;
         }
     }
+
+    
 }
 
 
@@ -1166,10 +1172,8 @@ about-page {
     }
 }
 
-.common-section {
-    min-height: 100vh;
-    background: var(--p-clr-white);
-    color: var(--p-clr-black);
+.divider-line {
+    display: flex;
+    height: 30px;
+    align-items: center;
 }
-
-
