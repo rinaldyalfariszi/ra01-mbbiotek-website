@@ -129,4 +129,21 @@ Tuesday, 24 February 2026
 - Designed the mobile version for the home page
 - Clean up some text sizes that were too small
 
+Wednesday, 25 February 2026
+- Checkpoint with client
+- Merge the `feature/test-route` branch to main branch, it has the progress of developed the routing system and styling the website
+- Fix a bug where split line text doesn't recalculate when viewport is resized
+
+Thursday, 26 February 2026
+- Add arrow icon for the CTAs button
+- Add more fluid font sizes and adjust the font sizes of other heading, anchor, and headline
+- Fix a bug where split text animation get skipped on iOS Safari browser's pull-to-refresh
+- Improve the rendering of bordered CTA with `box-shadow` approach instead of classic `border-width`, this approach fixed the antialiasing issue that still visible before
+
+Friday, 27 February 2026
+- Add divider line SVG code to HTML
+
+Saturday, 28 February 2026
+- Develop featured products section for the home page
+
 </details>
