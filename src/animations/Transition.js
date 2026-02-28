@@ -61,6 +61,13 @@ const Transition =
     intro: async () =>
     {
         await document.fonts.ready
+
+        await Promise.all(
+            [...document.images]
+                .filter(img => !img.complete)
+                .map(img => new Promise(res => { img.onload = res; img.onerror = res }))
+        )
+
         Transition.cleanup()
 
         const introTimeline = gsap.timeline(
