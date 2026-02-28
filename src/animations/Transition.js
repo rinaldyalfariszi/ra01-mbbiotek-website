@@ -220,7 +220,7 @@ const Transition =
     {
         const tl = gsap.timeline()
 
-        tl.to("#sail", { duration: 0.35, opacity: 0, skewX: 0.1, ease: "io1" })
+        tl.to("#sail", { duration: 0.35, opacity: 0, ease: "io1" })
 
         return tl
     },
@@ -228,7 +228,7 @@ const Transition =
     {
         const tl = gsap.timeline()
 
-        tl.to("#sail", { duration: 0.575, opacity: 1, skewX: 0.1, ease: "io1" })
+        tl.to("#sail", { duration: 0.575, opacity: 1, ease: "io1" })
 
         return tl
     }
