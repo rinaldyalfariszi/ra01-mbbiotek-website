@@ -735,6 +735,9 @@
     }
 
     .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         width: 100%;
     }
 
@@ -1165,14 +1168,6 @@
         margin-inline: auto;
     }
 
-    .u-h-full {
-        height: 100vh;
-    }
-
-    .u-w-full {
-        width: 100vw;
-    }
-
     .u-ratio-16-9 {
         width: 100%;
         aspect-ratio: var(--g-ratio-16-9);
@@ -1208,13 +1203,40 @@
         align-self: flex-end;
     }
 
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Utility - Spacing
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
     .u-padding-0 {
         padding: 0;
+    }
+
+    .u-padding-block-xl {
+        padding-block: clamp(calc(0.0625rem * 80), 160 / 14.4 * 1vw, calc(0.0625rem * 160));
+    }
+
+    .u-padding-inline-xl {
+        padding-inline: clamp(calc(0.0625rem * 80), 160 / 14.4 * 1vw, calc(0.0625rem * 160));
+    }
+
+    .u-margin-bottom-md {
+        margin-bottom: 2rem;
+    }
+
+    .u-gap-md {
+        gap: 2rem;
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Utility - Sizes
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .u-h-full {
+        height: 100vh;
+    }
+
+    .u-w-full {
+        width: 100vw;
+    }
+
     .u-font-size-heading-regular {
 		font-size: var(--font-size-heading-regular);
 	}
@@ -1279,7 +1301,6 @@ about-page {
 
 .divider-line {
     display: flex;
-    height: 30px;
     align-items: center;
 }
 
