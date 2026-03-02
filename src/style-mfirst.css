@@ -748,7 +748,7 @@
             width: 100%;
             /* height: 50%; */
             background-color: grey;
-            border: 1px dashed red;
+            /* border: 1px dashed red; */
         }
     }
 
@@ -787,9 +787,9 @@
         flex-direction: column;
         height: 100%;
         width: 100%;
-        /* gap: 8rem; */
+        gap: 2rem;
         align-self: stretch;
-        border: 1px dashed blue;
+        /* border: 1px dashed blue; */
         /* justify-content: space-between; */
     }
 
@@ -1283,3 +1283,9 @@ about-page {
     align-items: center;
 }
 
+.dynamic-section {
+    /* margin-block: 4rem; */
+    background: var(--p-clr-white);
+    color: var(--p-clr-black);
+    /* border: 1px dashed red; */
+}
