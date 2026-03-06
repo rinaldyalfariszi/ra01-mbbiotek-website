@@ -1345,8 +1345,10 @@ about-page {
 
     .footer-content {
         position: relative;
-        top: var(--g-header-height);
-        gap: 1rem;
+        padding-block: var(--g-header-height);
+        /* justify-self: center; */
+        /* align-self: center; */
+        /* border: 1px dashed yellow; */
 
         .footer-cta {
             display: flex;
@@ -1356,6 +1358,11 @@ about-page {
             /* gap: 2em; */
             margin-bottom: 5em;
             /* border: 1px dashed yellow; */
+
+            /* > * {
+                flex: 1;
+                flex-basis: 1px;
+            } */
 
             .cgi {
                 /* border: 1px dashed yellow; */
