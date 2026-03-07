@@ -5,6 +5,81 @@
 /* TODO: Add clamp to the <a> element */
 /* TODO: Add clamp to the margin-bottom of hero-content-bottom */
 
+@layer management {
+    /* Style Naming Convention */
+    /* Layout */
+    .wrapper {}
+    .grid-equal-columns {}
+    .flex-equal-columns {}
+    .common-section {}
+    .hero-section {}
+    .hero-image {}
+    .cgi {}
+    .hero-content {}
+    .hero-content-bottom {}
+    .hero-content-bottom-second {}
+    .hero-button-group {}
+    .light-rays-dummy {}
+    .home-section-2-content {}
+    /* Components */
+    .site-header {}
+    .site-header-content {}
+    .primary-navigation {}
+    .card {}
+    .card-content {}
+    .card-image {}
+    .card-header {}
+    .card-product-id {}
+    .card-product-status {}
+    .card-body {}
+    .card-cta {}
+    .card-borderless {}
+    .card__title {}
+    .card__note {}
+    .hero-headline {}
+    .heading-xl-regular-fluid {}
+    .heading-xl-light-fluid {}
+    .heading-lg-light-fluid {}
+    .heading-2xs-regular-fluid {}
+    .body-regular-light-fluid {}
+    .body-regular-regular-fluid {}
+    #sail {}
+    .cta {}
+    .cta-bg {}
+    .cta-txt {}
+    .cta-border {}
+    .cta-border-white {}
+    .cta-border-gradient {}
+    .cta-icon {}
+    #app {}
+    #app.loaded {}
+    .logo {}
+    .divider-line {}
+    .dynamic-section {}
+    .footer-section {}
+    .footer-content {}
+    .footer-cta {}
+    .footer-cta-second {}
+    .footer-info {}
+    .footer-col {}
+
+    /* BEM - Component > Hero Section */
+    .hero-section {}
+    .hero-section__content {}
+    .hero-section__cgi-wrapper {}
+    .hero-section__bottom {}
+    .hero-section__header {}
+    .hero-section__body {}
+    .hero-section__cta {}
+
+    /* BEM - Component > CTA */
+    .cta {}
+    .cta--ghost-white {}
+    .cta__bg {}
+    .cta__label {}
+    .cta__icon {}
+}
+
 /**
  * ============================================================
  * Reset
@@ -56,10 +131,11 @@
         margin: 0;
         padding: 0;
     }
-    /* p,
+
+    p,
     li {
         text-wrap: balance;
-    } */
+    }
 
     body {
         min-block-size: 100vh;
@@ -1457,4 +1533,131 @@ about-page {
     &[data-alignment="centered"] {
         --equal-columns-vertical-alignment: center;
     }
+}
+
+
+
+
+
+
+
+
+.hero-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100svh;
+    width: 100%;
+    justify-content: stretch;
+    background: var(--s-background-accent-main);
+    padding-block-start: var(--g-header-height);
+    /* border: 1px dashed white; */
+}
+
+.hero-section__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    /* height: calc(100svh - var(--g-header-height)); */
+    min-height: calc(100svh - var(--g-header-height));
+    border: 1px dashed yellow;
+}
+
+.hero-section__cgi-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    flex-basis: 1px;
+    width: 100%;
+    /* min-height: clamp(20svh, calc(50svh - var(--g-header-height)), 50svh); */
+    /* height: calc(50% - var(--g-header-height)); */
+    /* min-height: clamp(300px, calc(20svh - var(--g-header-height)), 300px); */
+    min-height: max(300px, calc(20svh - var(--g-header-height)));
+    align-self: center;
+    /* border: 1px dashed white; */
+
+    &[data-cgi-width="overflow"] {
+        width: calc(100% + var(--wrapper-padding-inline) * 2);
+    }
+
+    figure {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        /* border: 1px dashed beige; */
+    }
+}
+
+.hero-section__bottom {
+    display: inline-flex;
+    align-items: stretch;
+    gap: clamp(2vw, 4vw, 106px);
+    margin-bottom: 64px;
+    /* border: 1px dashed red; */
+}
+
+.hero-section__header {}
+
+.hero-section__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.hero-section__cta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* BEM - Component > CTA */
+.cta {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border-radius: 30px;
+    cursor: pointer;
+    overflow: hidden;
+    max-width: max-content;
+    padding-inline: 1.5em;
+    padding-block: 0.875em;
+    text-decoration: none;
+    /* box-sizing: content-box; */
+    /* height: min-content; */
+
+
+    @media (width < 960px) {
+        max-width: max-content;
+    }
+}
+
+.cta--ghost-white {}
+
+.cta__bg {
+    background: linear-gradient(60deg, rgb(112, 35, 77), rgb(180, 69, 123), rgb(112, 35, 77));
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    position: absolute;
+    will-change: transform;
+    /* box-sizing: content-box !important; */
+    transition: transform 800ms var(--g-o6);
+}
+.cta__label {
+    color: white;
+    font-size: var(--p-us-14-18);
+    font-weight: var(--s-font-weight-body-light);
+    position: relative;
+    /* border: 1px dashed goldenrod; */
+}
+.cta__icon {
+    
 }

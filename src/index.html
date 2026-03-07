@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>MBBiotek New Website</title>
 
-        <link rel="stylesheet" href="./style-mfirst.css" />
+        <link rel="stylesheet" href="./style-mfirst-refactored.css" />
         <script type="module" src="./App.js" defer></script>
 
         <style>
@@ -74,35 +74,35 @@
             <section class="hero-section has-scrolltrigger">
                 <img class="light-rays-dummy" src="images/light-rays.png" alt="" />
                 <div class="wrapper">
-                    <div class="hero-content content">
+                    <div class="hero-section__content">
                         <!-- Row 1 -->
-                        <div class="cgi">
+                        <div class="hero-section__cgi-wrapper">
                             <figure>
-                                <img class="hero-image" src="images/cgi-1.png" alt="" />
+                                <img class="cgi" src="images/cgi-1.png" alt="" />
                             </figure>
                         </div>
 
                         <!-- Row 2 -->
-                        <div class="hero-content-bottom">
-                            <h1 class="heading-xl-regular-fluid">
+                        <div class="hero-section__bottom">
+                            <h1 class="hero-section__header heading-xl-regular-fluid">
                                 Empowering <br />
                                 molecular diagnostics <br />
                                 and enhancing lives
                             </h1>
-                            <div class="hero-content-bottom-second">
+                            <div class="hero-section__body">
                                 <p class="hero-headline">
                                     Contribute to the advancement of the early detection and
                                     treatment of infectious and non&#x2011;communicable diseases.
                                     Promote Molecular Based precision healthcare ecosystem.
                                 </p>
 
-                                <div class="hero-button-group">
-                                    <a class="cta cta-border-white" href="#xxx">
-                                        <span class="">
+                                <div class="hero-section__cta">
+                                    <a class="cta cta--ghost-white" href="">
+                                        <span>
                                             <div></div>
                                         </span>
-                                        <span class="cta-txt">Discover</span>
-                                        <span class="cta-icon">
+                                        <span class="cta__label">Discover</span>
+                                        <span class="cta__icon">
                                             <svg
                                                 width="22"
                                                 height="22"
@@ -117,30 +117,10 @@
                                             </svg>
                                         </span>
                                     </a>
-                                    <!-- <a class="cta" href="#xxx">
-                                        <span class="cta-border">
-                                            <div></div>
-                                        </span>
-                                        <span class="cta-txt">Discover</span>
-                                        <span class="cta-icon">
-                                            <svg
-                                                width="22"
-                                                height="22"
-                                                viewBox="0 0 22 22"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <path
-                                                    d="M12.2262 2C12.2262 1.32279 11.6772 0.773804 11 0.773804C10.3228 0.773804 9.7738 1.32279 9.7738 2L11 2L12.2262 2ZM10.1329 20.8671C10.6118 21.3459 11.3882 21.3459 11.8671 20.8671L19.6705 13.0636C20.1494 12.5847 20.1494 11.8083 19.6705 11.3295C19.1917 10.8506 18.4153 10.8506 17.9364 11.3295L11 18.2659L4.06359 11.3295C3.58473 10.8506 2.80834 10.8506 2.32948 11.3295C1.85062 11.8083 1.85062 12.5847 2.32948 13.0636L10.1329 20.8671ZM11 2L9.7738 2L9.7738 20L11 20L12.2262 20L12.2262 2L11 2Z"
-                                                    fill="white"
-                                                />
-                                            </svg>
-                                        </span>
-                                    </a> -->
-                                    <a class="cta navlink" href="/about">
-                                        <span class="cta-bg"></span>
-                                        <span class="cta-txt">See products</span>
-                                        <span class="cta-icon">
+                                    <a class="cta" href="/about">
+                                        <span class="cta__bg"></span>
+                                        <span class="cta__label">See products</span>
+                                        <span class="cta__icon">
                                             <svg
                                                 width="22"
                                                 height="22"
@@ -161,302 +141,7 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Home Page - Section 2 -->
-            <section class="common-section has-scrolltrigger" id="xxx">
-                <div class="wrapper">
-                    <div class="home-section-2-content content">
-                        <!-- Row 1 -->
-                        <div>
-                            <header>
-                                <h2 class="heading-lg-light-fluid">
-                                    Quality, Innovation, and <br class="u-hide-on-mobile" />
-                                    Partnership at Our Core
-                                </h2>
-                            </header>
-                            <a class="cta navlink">
-                                <span class="cta-border-gradient">
-                                    <div></div>
-                                </span>
-                                <span class="cta-txt">
-                                    <p><span class="u-text-gradient">Learn more</span></p>
-                                </span>
-                                <span class="cta-icon">
-                                    <svg
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 22 22"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <defs>
-                                            <!-- linearGradient id="arrowGradient" -->
-                                            <linearGradient
-                                                id="arrowGradient"
-                                                x1="0%"
-                                                y1="0%"
-                                                x2="100%"
-                                                y2="100%"
-                                            >
-                                                <stop offset="0%" stop-color="#9E3F96" />
-                                                <stop offset="100%" stop-color="#FF79AF" />
-                                            </linearGradient>
-                                        </defs>
-
-                                        <path
-                                            d="M3.76967 16.4962C3.29081 16.9751 3.29081 17.7515 3.76967 18.2303C4.24853 18.7092 5.02491 18.7092 5.50377 18.2303L4.63672 17.3633L3.76967 16.4962ZM18.5908 4.63536C18.5908 3.95815 18.0418 3.40916 17.3646 3.40916L6.32887 3.40916C5.65166 3.40916 5.10268 3.95815 5.10268 4.63536C5.10268 5.31257 5.65166 5.86156 6.32887 5.86156L16.1384 5.86156L16.1384 15.6711C16.1384 16.3483 16.6874 16.8973 17.3646 16.8973C18.0419 16.8973 18.5908 16.3483 18.5908 15.6711L18.5908 4.63536ZM4.63672 17.3633L5.50377 18.2303L18.2317 5.50241L17.3646 4.63536L16.4976 3.76831L3.76967 16.4962L4.63672 17.3633Z"
-                                            fill="url(#arrowGradient)"
-                                        />
-                                    </svg>
-                                </span>
-                            </a>
-                        </div>
-
-                        <!-- Row 2, 3 card columns -->
-                        <div class="grid-equal-columns">
-                            <div class="card-borderless u-padding-0">
-                                <img src="images/icon-shield.svg" alt="" class="u-icon-md" />
-                                <h3 class="heading-2xs-regular-fluid">Local Manufacturing</h3>
-                                <p class="body-regular-light-fluid">
-                                    Our CPAKB certified facility in Indonesia operates under strict
-                                    GMP standards to ensure quality at every step
-                                </p>
-                            </div>
-                            <div class="card-borderless u-padding-0">
-                                <img src="images/icon-dna.svg" alt="" class="u-icon-md" />
-                                <h3 class="heading-2xs-regular-fluid">
-                                    Proprietary, Quality Assured
-                                </h3>
-                                <p class="body-regular-light-fluid">
-                                    From raw material development to regulatory assistance, we
-                                    provide integrated solutions
-                                </p>
-                            </div>
-                            <div class="card-borderless u-padding-0">
-                                <img src="images/icon-handshake.svg" alt="" class="u-icon-md" />
-                                <h3 class="heading-2xs-regular-fluid">Strategic Partnerships</h3>
-                                <p class="body-regular-light-fluid">
-                                    Collaborating with industry stakeholders to drive advancements
-                                    in diagnostic technology and solve key healthcare challenges
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="u-background-offwhite">
-                <div class="wrapper">
-                    <div class="divider-line">
-                        <svg width="100%" height="1" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="0" y1="1" x2="100%" y2="1" stroke="black" stroke-width="1" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Home Page - Section 3 -->
-            <section class="dynamic-section">
-                <div class="wrapper">
-                    <div class="content u-padding-block-xl">
-                        <header>
-                            <h2 class="heading-lg-light-fluid u-margin-bottom-md">
-                                Featured Products
-                            </h2>
-                        </header>
-                        <div class="card">
-                            <!-- Card Header -->
-                            <div class="card-header">
-                                <div class="card-product-id">MBB-A04</div>
-                                <div class="card-product-status">NEW</div>
-                            </div>
-
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="card-image">
-                                    <div class="card-image-wrapper">
-                                        <picture>
-                                            <img
-                                                src="images/product-vtm.png"
-                                                alt=""
-                                                class=""
-                                                width="1920"
-                                            />
-                                        </picture>
-                                    </div>
-                                </div>
-                                <div class="card-content">
-                                    <h3 class="card-title heading-2xs-regular-fluid">
-                                        Viral Transport Medium HPV
-                                    </h3>
-                                    <p class="card-description body-regular-light-fluid">
-                                        GENOTEST VTM HPV is a liquid medium in a specialized tube
-                                        designed for the storage and transportation of Human
-                                        Papillomavirus (HPV) clinical samples.<span
-                                            class="card-description-extra"
-                                        >
-                                            Its primary purpose is to preserve samples, including
-                                            cervical swabs, vaginal exudates, tissues, and other
-                                            clinical specimens. This method ensures that the HPV
-                                            virus and its DNA/RNA are protected from potential
-                                            damage during transportation from the sampling site to
-                                            the testing laboratory.
-                                        </span>
-                                    </p>
-                                    <a class="cta navlink card-cta">
-                                        <span class="cta-border-gradient">
-                                            <div></div>
-                                        </span>
-                                        <span class="cta-txt">
-                                            <p><span class="u-text-gradient">Learn more</span></p>
-                                        </span>
-                                        <span class="cta-icon">
-                                            <svg
-                                                width="22"
-                                                height="22"
-                                                viewBox="0 0 22 22"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <defs>
-                                                    <!-- linearGradient id="arrowGradient" -->
-                                                    <linearGradient
-                                                        id="arrowGradient"
-                                                        x1="0%"
-                                                        y1="0%"
-                                                        x2="100%"
-                                                        y2="100%"
-                                                    >
-                                                        <stop offset="0%" stop-color="#9E3F96" />
-                                                        <stop offset="100%" stop-color="#FF79AF" />
-                                                    </linearGradient>
-                                                </defs>
-                                                <path
-                                                    d="M3.76967 16.4962C3.29081 16.9751 3.29081 17.7515 3.76967 18.2303C4.24853 18.7092 5.02491 18.7092 5.50377 18.2303L4.63672 17.3633L3.76967 16.4962ZM18.5908 4.63536C18.5908 3.95815 18.0418 3.40916 17.3646 3.40916L6.32887 3.40916C5.65166 3.40916 5.10268 3.95815 5.10268 4.63536C5.10268 5.31257 5.65166 5.86156 6.32887 5.86156L16.1384 5.86156L16.1384 15.6711C16.1384 16.3483 16.6874 16.8973 17.3646 16.8973C18.0419 16.8973 18.5908 16.3483 18.5908 15.6711L18.5908 4.63536ZM4.63672 17.3633L5.50377 18.2303L18.2317 5.50241L17.3646 4.63536L16.4976 3.76831L3.76967 16.4962L4.63672 17.3633Z"
-                                                    fill="url(#arrowGradient)"
-                                                />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TODO: Create Footer -->
-            <!-- Home Page - Section 4 -->
-            <footer class="footer-section">
-                <img class="light-rays-dummy" src="images/light-rays.png" alt="" />
-                <div class="wrapper">
-                    <div class="footer-content">
-                        <!-- Footer CTA -->
-                        <div class="footer-cta flex-equal-columns">
-                            <div class="cgi">
-                                <figure>
-                                    <img class="hero-image" src="images/cgi-1.png" alt="" />
-                                </figure>
-                            </div>
-                            <header>
-                                <div class="footer-cta-second">
-                                    <h2 class="heading-lg-light-fluid">
-                                        Have any questions?<br />Want to partner with us?
-                                    </h2>
-                                    <a class="cta navlink" href="/about">
-                                        <span class="cta-bg"></span>
-                                        <span class="cta-txt">Contact us</span>
-                                        <span class="cta-icon">
-                                            <svg
-                                                width="22"
-                                                height="22"
-                                                viewBox="0 0 22 22"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                                <circle
-                                                    cx="11"
-                                                    cy="11"
-                                                    r="3.5"
-                                                    stroke="white"
-                                                    fill="transparent"
-                                                />
-                                            </svg>
-                                        </span>
-                                    </a>
-                                </div>
-                            </header>
-                        </div>
-
-                        <!-- Footer Info -->
-                        <div class="footer-info">
-                            <div class="grid-auto-fit">
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">
-                                        Head Office
-                                    </h3>
-                                    <address>
-                                        <p class="body-regular-regular-fluid">
-                                            Duta Permai Blok A2 No 7, JL. KH Noer Alie Kalimalang
-                                            Bekasi, West Bekasi, Bekasi City, West Java.17145
-                                        </p>
-                                    </address>
-                                </div>
-
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">
-                                        Factory 1
-                                    </h3>
-                                    <address>
-                                        <p class="body-regular-regular-fluid">
-                                            Jl. Science Timur 3, Blok B5C.10 Jababeka Phase 5
-                                            Bekasi Regency, West Java Postal Code 76121
-                                        </p>
-                                    </address>
-                                </div>
-
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">
-                                        Factory 2
-                                    </h3>
-                                    <address>
-                                        <p class="body-regular-regular-fluid">
-                                            Teaching Factory, Center for Biotechnology and
-                                            Bioinformatics Research Padjadjaran University Jalan
-                                            Singa Perbangsa No.2 Village/Sub-district Lebak Gede,
-                                            Kec. Coblong Bandung City, West Java Province Postal
-                                            Code 40132
-                                        </p>
-                                    </address>
-                                </div>
-
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">Sitemap</h3>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Projects</a></li>
-                                    </ul>
-                                </div>
-
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">Email</h3>
-                                    <a href="mailto:mugiberkahbioteknologi@mbbiotek.id">
-                                        <!-- mugiberkahbioteknologi@mbbiotek.id -->
-                                    </a>
-                                </div>
-
-                                <div class="footer-col u-debug-border">
-                                    <h3 class="body-regular-regular-fluid u-text-grey">
-                                        Follow us
-                                    </h3>
-                                    <a href="">
-                                        <!-- Linkedin and IG CTA -->
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <section class="hero-section has-scrolltrigger"></section>
         </template>
 
         <!-- ──────────────────────── About Page Template ──────────────────────── -->

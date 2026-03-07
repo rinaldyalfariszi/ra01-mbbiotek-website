@@ -23,5 +23,7 @@
     },
     "[javascript]": {
         "editor.defaultFormatter": null
-    }
+    },
+    "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/? _",
+    "css.validate": false
 }
