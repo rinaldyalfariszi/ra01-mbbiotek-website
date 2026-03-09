@@ -1,5 +1,6 @@
 /**
  * Fluid sizes (global size) are -> font-size, margin, padding, gap, width, height, cols 
+ * Aspect ratio -> 1200x675 (16/9), 2160x1215 (16/9), 
  */
 
 /* TODO: Add clamp to the <a> element */
@@ -70,6 +71,19 @@
     .cta__icon {}
     .cta--secondary-white {}
     .cta--secondary-gradient {}
+
+    /* BEM - Component > Card */
+    .card {}
+    .card__metadata {}
+    .card__product-id {}
+    .card__product-status {}
+    .card__content {}
+    .card__image {}
+    .card__title {}
+    .card__description {}
+    .card__cta {}
+    .card--product {}
+    .card--borderless {}
 }
 
 /**
@@ -148,6 +162,7 @@
     picture {
         max-inline-size: 100%;
         display: block;
+        font-style: italic;
         -webkit-user-select: none;  /* Safari */
         -moz-user-select: none;     /* Firefox */
         -ms-user-select: none;      /* IE 10+ */
@@ -739,130 +754,147 @@
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Component - Card
     /*───────────────────────────────────────────────────────────────────────────────────────*/
-    /* Card anatomy:
-    - Card
-    -- Card Header
-    -- Card Body
-    -- Card Footer
-    */
     .card {
         display: flex;
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
-        /* background: var(--p-clr-gradient-1); */
+        background: var(--p-clr-white);
         border-radius: var(--s-border-radius-3);
         border: 1px solid black;
-        height: 100%;
-        
-
-        .card-description-extra {
-            display: none;
-        }
-
-        
-
-        @media (width > 760px) {
-            .card-body {
-                flex-direction: row;
-            }
-            
-            .card-description-extra {
-                display: unset;
-            }
-        }
+        container-type: inline-size;
+        container-name: card;
     }
 
-    .card-content {
+    .card__metadata {
         display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-    }
-
-    .card-image {
-        /* flex: 1 0 0.5; */
-        img {
-            border-radius: var(--s-border-radius-2);
-            /* border: 1px dashed red; */
-            /* aspect-ratio: var(--g-ratio-16-9); */
-            /* object-fit: contain; */
-            width: 100%;
-            /* height: 50%; */
-            background-color: rgb(215, 215, 215);
-            /* border: 1px dashed red; */
-        }
-    }
-
-    .card-header {
-        display: flex;
+        gap: 0.5em;
         justify-content: space-between;
-        /* border: 1px dashed red; */
     }
 
-    .card-product-id {
-        /* position: absolute; */
+    .card__product-id {
         width: max-content;
         height: max-content;
         padding-inline: 0.5em;
-        padding-block: 0.375em;
+        padding-block: 0.3em;
         border: 1px solid black;
         border-radius: var(--s-border-radius-2);
         background-color: var(--p-clr-white);
     }
 
-    .card-product-status {
-        /* position: absolute; */
+    .card__product-status {
         width: max-content;
         height: max-content;
         padding-inline: 0.5em;
-        padding-block: 0.375em;
-        /* align-self: flex-end; */
+        padding-block: 0.3em;
         border: 1px solid #F29E29;
         border-radius: var(--s-border-radius-2);
         background-color: #F29E29;
         color: var(--p-clr-white);
     }
 
-    .card-body {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        gap: 2rem;
-        align-self: stretch;
-        /* border: 1px dashed blue; */
-        /* justify-content: space-between; */
-    }
-
-    .card-cta {
-        justify-content: space-between;
-    }
-    
-
-    .card-borderless {
+    .card__content {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        padding: 1rem;
-        /* background: var(--p-clr-gradient-1); */
+    }
+
+    .card__image {
+        background: rgb(215, 215, 215);
+        border-radius: var(--s-border-radius-2);
+        overflow: hidden;
+        aspect-ratio: var(--ratio, 16/9);
+
+        picture {
+            height: 100%;
+        }
 
         img {
-            border-radius: var(--s-border-radius-1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 
+    .card__image--cover img { object-fit: cover; }
+    .card__image--contain img { object-fit: contain; }
+    .card__image--fill img { object-fit: fill; }
+    .card__image--none img { object-fit: none; }
+    .card__image--transparent { background: transparent; }
 
-    .card__title {
-        color: var(--card-title-color, var(--text-brand));
-        font-size: var(--card-title-font-size, var(--font-size-heading-sm));
+    .card__info {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 1em;
     }
 
-    .card__note {
-        margin-top: auto;
-        background-color: red;
-        padding: 0.75rem;
-        border-radius: var(--border-radius-2);
+    .card__description {
+        display: block;
+    }
+
+    .card__description-extra {
+        display: none;
+    }
+
+    .card--product {
+        .card__image {
+            background: transparent;
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
+    .card--product-compact {
+        .card__image {
+            background: transparent;
+
+            img {
+                object-fit: contain;
+            }    
+        }
+
+        .card__description {
+            display: none;
+        }
+    }
+
+    .card--borderless {
+        border: 0;
+        padding: 0;
+    }
+
+    @container card (inline-size > 760px) {
+        .card__content {
+            flex-direction: row;
+        }
+        
+        .card__description-extra {
+            display: unset;
+        }
+
+        .card__image {
+            flex: 0 0 50%;
+        }
+
+        .card__info {
+            gap: 1.5em;
+            padding-inline: 1em;
+            padding-block: 1em;
+        }
+
+        .card__cta {
+            margin-top: auto;
+            margin-bottom: 2em;
+        }
+
+        .card--product-compact {
+            .card__cta {
+                margin-top: 1em;
+            }
+        }
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
@@ -1484,14 +1516,4 @@ about-page {
         --equal-columns-vertical-alignment: center;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
