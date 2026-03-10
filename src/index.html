@@ -6,6 +6,7 @@
         <title>MBBiotek New Website</title>
 
         <link rel="stylesheet" href="./style-mfirst-refactored.css" />
+        <link rel="preload" as="image" href="/images/cgi-1.png" fetchpriority="high" />
         <script type="module" src="./App.js" defer></script>
 
         <style>
@@ -96,7 +97,7 @@
                                     Promote Molecular Based precision healthcare ecosystem.
                                 </p>
 
-                                <div class="hero-section__cta">
+                                <div class="hero-section__cta-wrapper">
                                     <a class="cta cta--secondary-white" href="">
                                         <span>
                                             <div></div>
@@ -224,6 +225,7 @@
                 </div>
             </section>
 
+            <!-- Line divider -->
             <div class="u-background-offwhite">
                 <div class="wrapper">
                     <div class="divider-line">
@@ -337,7 +339,120 @@
                 </div>
             </section>
 
-            <section class="hero-section has-scrolltrigger"></section>
+            <!-- TODO: Create Footer -->
+            <!-- Home Page - Section 4 -->
+            <footer class="footer-section">
+                <img class="temp--light-rays" src="images/light-rays.png" alt="" />
+                <div class="wrapper">
+                    <div class="footer-section__content">
+                        <!-- Footer CTA -->
+                        <div class="footer-section__cta flex-equal-columns">
+                            <div class="cgi">
+                                <figure>
+                                    <img class="hero-image" src="images/cgi-1.png" alt="" />
+                                </figure>
+                            </div>
+                            <header>
+                                <div class="footer-section__lead">
+                                    <h2 class="heading-xl-light-fluid">
+                                        Have any questions?<br />Want to partner with us?
+                                    </h2>
+                                    <a class="cta navlink" href="/about">
+                                        <span class="cta__bg"></span>
+                                        <span class="cta__label">Contact us</span>
+                                        <span class="cta__icon">
+                                            <svg
+                                                width="22"
+                                                height="22"
+                                                viewBox="0 0 22 22"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <circle
+                                                    cx="11"
+                                                    cy="11"
+                                                    r="3.5"
+                                                    stroke="white"
+                                                    fill="transparent"
+                                                />
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+
+                        <!-- Footer Info -->
+                        <div class="footer-section__info">
+                            <div class="grid-auto-fit">
+                                <div class="footer-col">
+                                    <h3 class="body-regular-regular-fluid u-text-grey">
+                                        Head Office
+                                    </h3>
+                                    <address>
+                                        <p class="body-regular-regular-fluid">
+                                            Duta Permai Blok A2 No 7, JL. KH Noer Alie Kalimalang
+                                            Bekasi, West Bekasi, Bekasi City, West Java.17145
+                                        </p>
+                                    </address>
+                                </div>
+
+                                <div class="footer-col">
+                                    <h3 class="body-regular-regular-fluid u-text-grey">
+                                        Factory 1
+                                    </h3>
+                                    <address>
+                                        <p class="body-regular-regular-fluid">
+                                            Jl. Science Timur 3, Blok B5C.10 Jababeka Phase 5
+                                            Bekasi Regency, West Java Postal Code 76121
+                                        </p>
+                                    </address>
+                                </div>
+
+                                <div class="footer-col">
+                                    <h3 class="body-regular-regular-fluid u-text-grey">
+                                        Factory 2
+                                    </h3>
+                                    <address>
+                                        <p class="body-regular-regular-fluid">
+                                            Teaching Factory, Center for Biotechnology and
+                                            Bioinformatics Research Padjadjaran University Jalan
+                                            Singa Perbangsa No.2 Village/Sub-district Lebak Gede,
+                                            Kec. Coblong Bandung City, West Java Province Postal
+                                            Code 40132
+                                        </p>
+                                    </address>
+                                </div>
+
+                                <div class="footer-section__info-column">
+                                    <h3 class="body-regular-regular-fluid u-text-grey">Sitemap</h3>
+                                    <ul role="list">
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Projects</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="footer-col">
+                                    <h3 class="body-regular-regular-fluid u-text-grey">Email</h3>
+                                    <a href="mailto:mugiberkahbioteknologi@mbbiotek.id">
+                                        mugiberkahbioteknologi@mbbiotek.id
+                                    </a>
+
+                                    <h3 class="body-regular-regular-fluid u-text-grey">
+                                        Follow us
+                                    </h3>
+                                    <a href="">
+                                        <!-- Linkedin and IG CTA -->
+                                    </a>
+                                </div>
+
+                                <div class="footer-col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </template>
 
         <!-- ──────────────────────── About Page Template ──────────────────────── -->
