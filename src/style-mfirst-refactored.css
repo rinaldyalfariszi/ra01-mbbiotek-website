@@ -295,6 +295,7 @@
         /* --g-wrapper-width-default: 1742px; */
         --g-wrapper-width-default: calc(100vw + 0px);
         --g-wrapper-width-large: 3840px;
+        --g-wrapper-padding-narrow: clamp(5em, 7.5vw, 7.5em);
         --g-wrapper-padding-inline: clamp(32px, 3vw, 88px);
         /* --g-wrapper-padding-inline: 88px; */
 
@@ -490,6 +491,18 @@
 
         &[data-wrapper-width="wide"] {
             --wrapper-max-width: 1340px;
+        }
+
+    }
+
+    .wrapper--narrow {
+        --wrapper-padding-inline: var(--g-wrapper-padding-inline);
+        /* --wrapper-max-width: 1340px; */
+    }
+
+    @media (width > 960px) {
+        .wrapper--narrow {
+            --wrapper-padding-inline: var(--g-wrapper-padding-narrow);
         }
     }
 
