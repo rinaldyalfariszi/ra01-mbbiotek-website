@@ -810,6 +810,7 @@
         aspect-ratio: var(--ratio, 16/9);
 
         picture {
+            display: block;
             height: 100%;
         }
 
@@ -896,6 +897,16 @@
 
         .card--product-compact .card__cta {
             margin-top: 1em;
+        }
+
+        .card--product {
+            .card__image {
+                /* background: transparent; */
+
+                img {
+                    object-fit: contain;
+                }
+            }
         }
     }
 
