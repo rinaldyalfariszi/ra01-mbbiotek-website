@@ -1595,6 +1595,10 @@ about-page {
     text-decoration: none;
 }
 
+.footer-col a {
+    word-break: break-all;
+}
+
 
 @media (width > 960px) {
     .footer-section__cta {
