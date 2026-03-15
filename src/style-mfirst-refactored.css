@@ -781,7 +781,11 @@
 
     .footer-section__email {
         text-decoration: none;
-        word-break: break-all;   
+        word-break: break-all;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     .footer-section__socials {
