@@ -807,6 +807,10 @@
             
         }
 
+        .footer-section__info .grid-auto-fit {
+            grid-template-columns: 1fr 1fr 1fr 200px 1fr;
+        }
+
         .footer-section__info-column {
             display: flex;
             flex-direction: column;
@@ -1631,7 +1635,7 @@ about-page {
 .grid-auto-fit {
     --auto-fit-min-col-size: 300px;
     display: grid;
-    /* gap: 1rem; */
+    gap: 2em;
     grid-template-columns: repeat(
         auto-fit,
         minmax(min(var(--auto-fit-min-col-size), 100%), 1fr)
