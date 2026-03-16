@@ -17,42 +17,26 @@ const Transition =
         
         gsap.set("home-page, about-page", { clearProps: "all" })
         gsap.set("h1, h2, h3, p, a", { clearProps: "all" })
+        gsap.set("._o", { clearProps: "opacity" })
     },
-    recalculateSplits: async () =>
-    {
+    recalculateSplits: async () => {
         await document.fonts.ready
-        // Only run if there's actually a page rendered
         const hasPage = document.querySelector("main > *")
         if (!hasPage) return
 
-        // Revert all stale splits first
         Transition._splitInstances.forEach(split => {
             if (split && split.revert) split.revert()
         })
         Transition._splitInstances = []
 
-        // Re-split heading
-        const h1Split = new SplitText("h1", {
+        // ✅ Re-split all ._y elements
+        const outerSplit = new SplitText("._y", {
             type: "lines",
             linesClass: "u-generated-split-text-lines-container"
         })
-        Transition._splitInstances.push(h1Split)
+        Transition._splitInstances.push(outerSplit)
 
-        h1Split.lines.forEach(line => {
-            const inner = new SplitText(line, { type: "lines" })
-            Transition._splitInstances.push(inner)
-            // Set to final visible state — NO animation
-            gsap.set(inner.lines, { yPercent: 0, skewX: 0, opacity: 1 })
-        })
-
-        // Re-split body paragraphs
-        const pSplit = new SplitText("p", {
-            type: "lines",
-            linesClass: "u-generated-split-text-lines-container"
-        })
-        Transition._splitInstances.push(pSplit)
-
-        pSplit.lines.forEach(line => {
+        outerSplit.lines.forEach(line => {
             const inner = new SplitText(line, { type: "lines" })
             Transition._splitInstances.push(inner)
             gsap.set(inner.lines, { yPercent: 0, skewX: 0, opacity: 1 })
@@ -126,93 +110,71 @@ const Transition =
         
         return tl
     },
-    introTextReveal: () =>
-    {
-        const tl = gsap.timeline(
-        {
+    introTextReveal: () => {
+        const tl = gsap.timeline({
             onStart: () => { Transition._isRevealingText = true },
-            onComplete: () =>
-            {
+            onComplete: () => {
                 Transition._isRevealingText = false
-
-                if (Transition._pendingRefresh)
-                {
+                if (Transition._pendingRefresh) {
                     Transition._pendingRefresh = false
-                    // Transition.recalculateSplits()
                 }
             }
         })
 
         tl
-            .add(Transition.textRevealHeading(), "0")
-            .add(Transition.textRevealBody(), "0.2")
+            .add(Transition.textReveal("._y"), "0")
+            .add(Transition.opacityReveal("._o"), "0")
 
         return tl
     },
-    textRevealHeading: () =>
-    {
-        let split
-        let tl = gsap.timeline()
-        split = new SplitText("h1", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
+    textReveal: (selector = "._y") => {
+        const tl = gsap.timeline()
 
-        Transition._splitInstances.push(split)
-    
-        split.lines.forEach((line, index) => {
-            let split = new SplitText(line, {type: "lines"})
-            tl.from(split.lines, { duration: 2.2, yPercent: 100, skewX: 0.1, ease: "o6" }, ">-88%")
+        const outerSplit = new SplitText(selector, {
+            type: "lines",
+            linesClass: "u-generated-split-text-lines-container"
         })
-    
-        return tl
-    },
-    textRevealBody: () =>
-    {
-        let split
-        let tl = gsap.timeline()
-        split = new SplitText("p", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
+        Transition._splitInstances.push(outerSplit)
 
-        Transition._splitInstances.push(split)
-
-        const lineCount = split.lines.length
         const durationPerLine = 2.2
-        
-        // Define speed limits
-        const MIN_STAGGER = 0.1   // Fastest (for many lines)
-        const MAX_STAGGER = 0.2   // Slowest (for few lines)
-        
-        // Calculate ideal stagger
+        const MIN_STAGGER = 0.1
+        const MAX_STAGGER = 0.2
         const totalDuration = 2.8
-        const idealStagger = (totalDuration - durationPerLine) / Math.max(1, lineCount - 1)
-        
-        // Clamp stagger between min and max
-        const stagger = Math.max(MIN_STAGGER, Math.min(MAX_STAGGER, idealStagger))
-        
-        const allLines = split.lines.map(line => {
-            let lineSplit = new SplitText(line, {type: "lines"})
-            Transition._splitInstances.push(lineSplit)
-            return lineSplit.lines[0]
-        })
-        
-        tl.from(allLines, { 
-            duration: durationPerLine, 
-            yPercent: 100, 
-            skewX: 0.1, 
-            ease: "o6",
-            stagger: stagger
+
+        const allLines = outerSplit.lines.map(line => {
+            const inner = new SplitText(line, { type: "lines" })
+            Transition._splitInstances.push(inner)
+            return inner.lines[0]
         })
 
-        console.log(`Lines: ${lineCount}, Stagger: ${stagger.toFixed(3)}s`)
+        const lineCount = allLines.length
+        const idealStagger = (totalDuration - durationPerLine) / Math.max(1, lineCount - 1)
+        const stagger = Math.max(MIN_STAGGER, Math.min(MAX_STAGGER, idealStagger))
+
+        tl.from(allLines, {
+            duration: durationPerLine,
+            yPercent: 100,
+            skewX: 0.1,
+            ease: "o6",
+            stagger
+        })
+
+        console.log(`._y lines: ${lineCount}, stagger: ${stagger.toFixed(3)}s`)
 
         return tl
     },
-    textRevealA: () =>
-    {
-        let split
-        split = new SplitText("a", { type: "lines", linesClass: "u-generated-split-text-lines-container" })
-        Transition._splitInstances.push(split)
+    opacityReveal: (selector = "._o") => {
+        const tl = gsap.timeline()
+        const els = gsap.utils.toArray(selector)
 
-        let tl = gsap.timeline()
-        
-        tl.from(split.lines, { duration: 2.2, yPercent: 100, skewX: 0.1, ease: "o6" })
+        if (!els.length) return tl
+
+        tl.from(els, {
+            duration: 1.6,
+            opacity: 0,
+            ease: "o6",
+            stagger: 0.3
+        })
 
         return tl
     },

@@ -148,6 +148,11 @@
     address {
         line-height: 1;
     }
+
+    a._y {
+        line-height: 1; /* enough room for descenders, won't affect non-split anchors */
+    }
+
     
     img,
     picture {
