@@ -56,14 +56,14 @@ const Transition =
 
         const introTimeline = gsap.timeline(
         {
-            onStart: () => { App.isTransitioning = true, ScrollTrigger.refresh() },
+            onStart: () => { App.isTransitioning = true },
             onComplete: () => { App.isTransitioning = false }
         })
         
             introTimeline
                 .add(Transition.sailFadeIn(), "0")
                 .add(Transition.introPageSlideUp(), "0")
-                .add(Transition.introTextReveal(), ".6")
+                // .add(Transition.introTextReveal(), ".6")
         
         console.log("intro() running")
         return introTimeline
@@ -84,7 +84,10 @@ const Transition =
     },
     introPageSlideUp: () =>
     {
-        const tl = gsap.timeline()
+        const tl = gsap.timeline(
+        {
+            // onComplete: () => { ScrollTrigger.refresh() }
+        })
         
         const currentPage = document.querySelector("main > *")
         
@@ -175,6 +178,18 @@ const Transition =
             ease: "o6",
             stagger: 0.3
         })
+
+        return tl
+    },
+    revealSection: (section) =>
+    {
+        const tl = gsap.timeline()
+
+        const yEls = section.querySelectorAll("._y")
+        const oEls = section.querySelectorAll("._o")
+
+        if (yEls.length) tl.add(Transition.textReveal(yEls), "0")
+        if (oEls.length) tl.add(Transition.opacityReveal(oEls), "0")
 
         return tl
     },

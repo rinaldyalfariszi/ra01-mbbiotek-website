@@ -25,6 +25,11 @@ App.lenis = null
 
 globalThis.addEventListener("DOMContentLoaded", async () =>
 {
+    /**
+     * ============================================================
+     * Base Setup
+     * ============================================================
+     */
     gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase)
 
     lenisScroll()
@@ -33,6 +38,8 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     
     App.router.init()
     console.log('App Initiated')
+
+    menuNavigationToggler()
 
     CustomEase.create("o6", "M0,0 C0.19,1 0.22,1 1,1")
     CustomEase.create("o2", "M0,0 C0.25,0.46 0.45,0.94 1,1")
@@ -45,20 +52,32 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     ScrollTrigger.config({
         ignoreMobileResize: true
     })
-    
+
+    /**
+     * ============================================================
+     * Site header ScrollTrigger
+     * ============================================================
+     */
     const navbar = document.querySelector("header")
-    const element = document.querySelector(".hero-section")
-    const showAnim = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.2 }).progress(1)
+    const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.2 }).progress(1)
 
     let lastDirection = { value: 0 }
     let navST = null
-    
-    menuNavigationToggler()
 
     navST?.kill()
-    navST = createNavST(showAnim, lastDirection)
+    // navST = 
 
-    // Resize debounce
+    /**
+     * ============================================================
+     * Page section ScrollTrigger
+     * ============================================================
+     */
+
+    /**
+     * ============================================================
+     * Resize debounce
+     * ============================================================
+     */
     let resizeTimeout = null
     let delay = 50
     let lastWidth = window.innerWidth
@@ -82,24 +101,68 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     })
 })
 
-function createNavST(tween, lastDirection)
+function initNavbarScrollTriggers()
 {
-    return ScrollTrigger.create(
+    ScrollTrigger.getAll()
+        .filter(st => st.vars._isNavbarTrigger)
+        .forEach(st => st.kill())
+
+    ScrollTrigger.create(
     {
         trigger: "body",
         start: "15% top",
-        end: "bottom bottom",
-        markers: false,
+        end: "95% bottom",
+        markers: true,
+        _isNavbarTrigger: true,
         onUpdate: (self) =>
         {
             if (self.direction !== lastDirection.value)
             {
-                self.direction === -1 ? tween.play() : tween.reverse()
+                self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
                 lastDirection.value = self.direction
             }
         }
     })
 }
+
+function initSectionScrollTriggers()
+{
+    // Kill any existing section triggers to prevent duplicates on navigation
+    ScrollTrigger.getAll()
+        .filter(st => st.vars._isSectionTrigger)
+        .forEach(st => st.kill())
+
+        ScrollTrigger.refresh()
+
+    const sections = document.querySelectorAll(".js-st-section")
+
+    if (!sections.length)
+    {
+        console.warn("initSectionScrollTriggers: No .js-st-section elements found")
+        return
+    }
+
+    sections.forEach((section, index) =>
+    {
+        
+        ScrollTrigger.create(
+        {
+            trigger: section,
+            start: "top top",
+            end: "bottom bottom",
+            markers: true,
+            // once: true,
+            _isSectionTrigger: true,   // custom flag so we can kill them later
+            onEnter: () => Transition.revealSection(section)
+        })
+    })
+
+    console.log(`initSectionScrollTriggers: ${sections.length} trigger(s) created`)
+}
+
+// Expose globally so Router can call it
+App.initSectionScrollTriggers = initSectionScrollTriggers
+App.initNavbarScrollTriggers = initNavbarScrollTriggers
 
 function menuNavigationToggler()
 {
