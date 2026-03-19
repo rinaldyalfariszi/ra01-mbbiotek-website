@@ -1,0 +1,19 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": false,
+    "jsxSingleQuote": false,
+    "trailingComma": "es5",
+    "arrowParens": "always",
+    "printWidth": 99,
+    "overrides": [
+        {
+            "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+            "options": {
+                "plugins": ["prettier-plugin-brace-style"],
+                "braceStyle": "allman"
+            }
+        }
+    ]
+}

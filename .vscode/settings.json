@@ -6,15 +6,6 @@
         "source.fixAll.eslint": "explicit",
         "source.addMissingImports": "explicit"
     },
-    "prettier.tabWidth": 4,
-    "prettier.useTabs": false,
-    "prettier.semi": false,
-    "prettier.singleQuote": false,
-    "prettier.jsxSingleQuote": false,
-    "prettier.trailingComma": "es5",
-    "prettier.arrowParens": "always",
-    "prettier.printWidth": 99,
-    // "prettier.htmlWhitespaceSensitivity": "ignore",
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -22,7 +13,10 @@
         "editor.defaultFormatter": null
     },
     "[javascript]": {
-        "editor.defaultFormatter": null
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/? _",
     "css.validate": false

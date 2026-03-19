@@ -135,6 +135,7 @@ function initSectionScrollTriggers()
         ScrollTrigger.refresh()
 
     const sections = document.querySelectorAll(".js-st-section")
+    // const sections = gsap.utils.toArray('#home-page-template section')
 
     if (!sections.length)
     {
@@ -144,7 +145,6 @@ function initSectionScrollTriggers()
 
     sections.forEach((section, index) =>
     {
-        
         ScrollTrigger.create(
         {
             trigger: section,
@@ -152,8 +152,9 @@ function initSectionScrollTriggers()
             end: "bottom bottom",
             markers: true,
             // once: true,
-            _isSectionTrigger: true,   // custom flag so we can kill them later
-            onEnter: () => Transition.revealSection(section)
+            // _isSectionTrigger: true,   // custom flag so we can kill them later
+            onEnter: () => Transition.revealSection(section),
+            // onEnterBack: () => {_y reverse}
         })
     })
 

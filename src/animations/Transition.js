@@ -154,9 +154,11 @@ const Transition =
         const idealStagger = (totalDuration - durationPerLine) / Math.max(1, lineCount - 1)
         const stagger = Math.max(MIN_STAGGER, Math.min(MAX_STAGGER, idealStagger))
 
-        tl.from(allLines, {
+        tl
+        .set(allLines, { yPercent: 100 })
+        .to(allLines, {
             duration: durationPerLine,
-            yPercent: 100,
+            yPercent: 0,
             skewX: 0.1,
             ease: "o6",
             stagger
@@ -172,7 +174,9 @@ const Transition =
 
         if (!els.length) return tl
 
-        tl.from(els, {
+        tl
+        .set(els, { opacity: 0 })
+        .from(els, {
             duration: 1.6,
             opacity: 0,
             ease: "o6",
