@@ -180,26 +180,19 @@ function menuNavigationToggler()
 }
 
 function lenisScroll() {
-    const lenis = new Lenis({ lerp: 0.05 })
-    App.lenis = lenis
-
-    // Correct integration: proxy scroll reading to Lenis
-    ScrollTrigger.scrollerProxy(document.body, {
-        scrollTop(value) {
-            if (arguments.length) {
-                lenis.scrollTo(value, { immediate: true })
-            }
-            return lenis.scroll
-        },
-        getBoundingClientRect() {
-            return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
-        }
+    const lenis = new Lenis(
+    {
+        lerp: 0.05,
+        // duration: 1.8,
+        // easing: (t) => 1 - Math.exp(-6 * t) * Math.cos(t * 0.5), // damped
     })
+
+    App.lenis = lenis
 
     lenis.on("scroll", () => ScrollTrigger.update())
 
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000)
+    gsap.ticker.add(() => {
+        lenis.raf(performance.now()) // ✅ Correct absolute timestamp
     })
     gsap.ticker.lagSmoothing(0)
 }
