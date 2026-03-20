@@ -81,8 +81,9 @@ const Route =
                     force: true,
                     lock: true
                 })
-                // App.initSectionScrollTriggers()
-                // App.initNavbarScrollTriggers()
+                
+                App.initSectionScrollTriggers()
+                App.initNavbarScrollTriggers()
             }
             else
             {

@@ -59,11 +59,16 @@ const Transition =
             onStart: () => { App.isTransitioning = true },
             onComplete: () => { App.isTransitioning = false }
         })
+
+        const yEls = document.querySelectorAll(".hero-section ._y")
+        const oEls = document.querySelectorAll(".hero-section ._o")
         
-            introTimeline
-                .add(Transition.sailFadeIn(), "0")
-                .add(Transition.introPageSlideUp(), "0")
-                // .add(Transition.introTextReveal(), ".6")
+        introTimeline
+            .add(Transition.sailFadeIn(), "0")
+            .add(Transition.introPageSlideUp(), "0")
+            // .add(Transition.introTextReveal(), ".6")
+            .add(Transition.textReveal(yEls), ".6")
+            .add(Transition.opacityReveal(oEls), "1")
         
         console.log("intro() running")
         return introTimeline
@@ -86,7 +91,7 @@ const Transition =
     {
         const tl = gsap.timeline(
         {
-            // onComplete: () => { ScrollTrigger.refresh() }
+            onComplete: () => { ScrollTrigger.refresh() }
         })
         
         const currentPage = document.querySelector("main > *")
@@ -125,7 +130,7 @@ const Transition =
         })
 
         tl
-            .add(Transition.textReveal("._y"), "0")
+            .add(Transition.textReveal("hero-section ._y"), "0")
             .add(Transition.opacityReveal("._o"), "0")
 
         return tl
@@ -133,12 +138,14 @@ const Transition =
     textReveal: (selector = "._y") => {
         const tl = gsap.timeline()
 
+        // == Split line ==
         const outerSplit = new SplitText(selector, {
             type: "lines",
             linesClass: "u-generated-split-text-lines-container"
         })
         Transition._splitInstances.push(outerSplit)
 
+        // == Stagger logic ==
         const durationPerLine = 2.2
         const MIN_STAGGER = 0.1
         const MAX_STAGGER = 0.2
@@ -154,40 +161,47 @@ const Transition =
         const idealStagger = (totalDuration - durationPerLine) / Math.max(1, lineCount - 1)
         const stagger = Math.max(MIN_STAGGER, Math.min(MAX_STAGGER, idealStagger))
 
+        // == Text reveal timeline ==
         tl
-        .set(allLines, { yPercent: 100 })
-        .to(allLines, {
-            duration: durationPerLine,
-            yPercent: 0,
-            skewX: 0.1,
-            ease: "o6",
-            stagger
-        })
+            .set(selector, { autoAlpha: 1 })
+            .set(allLines, { yPercent: 100 })
+            .to(allLines, {
+                duration: durationPerLine,
+                yPercent: 0,
+                skewX: 0.1,
+                ease: "o6",
+                stagger
+            })
 
         console.log(`._y lines: ${lineCount}, stagger: ${stagger.toFixed(3)}s`)
 
         return tl
     },
     opacityReveal: (selector = "._o") => {
+        // == GSAP timeline setup ==
         const tl = gsap.timeline()
-        const els = gsap.utils.toArray(selector)
+        const elements = gsap.utils.toArray(selector)
 
-        if (!els.length) return tl
+        if (!elements.length) return tl
 
+        // == Opacity timeline ==
         tl
-        .set(els, { opacity: 0 })
-        .from(els, {
-            duration: 1.6,
-            opacity: 0,
-            ease: "o6",
-            stagger: 0.3
-        })
+            .set(elements, { autoAlpha: 1 })
+            .from(elements, {
+                duration: 1.6,
+                opacity: 0,
+                ease: "o6",
+                stagger: 0.3
+            })
 
         return tl
     },
     revealSection: (section) =>
     {
-        const tl = gsap.timeline()
+        const tl = gsap.timeline(
+        {
+            onComplete: () => { ScrollTrigger.refresh() }
+        })
 
         const yEls = section.querySelectorAll("._y")
         const oEls = section.querySelectorAll("._o")

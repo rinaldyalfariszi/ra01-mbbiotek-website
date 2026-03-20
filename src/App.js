@@ -58,13 +58,12 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
      * Site header ScrollTrigger
      * ============================================================
      */
-    const navbar = document.querySelector("header")
-    const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.2 }).progress(1)
+    // const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.2 }).progress(1)
 
-    let lastDirection = { value: 0 }
-    let navST = null
+    // let lastDirection = { value: 0 }
+    // let navST = null
 
-    navST?.kill()
+    // navST?.kill()
     // navST = 
 
     /**
@@ -97,29 +96,63 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
                 return
             }
             Transition.recalculateSplits()
+            ScrollTrigger.refresh()
         }, delay)
     })
 })
 
+// function initNavbarScrollTriggers()
+// {
+//     ScrollTrigger.getAll()
+//         .filter(st => st.vars._isNavbarTrigger)
+//         .forEach(st => st.kill())
+
+//     ScrollTrigger.create(
+//     {
+//         trigger: "body",
+//         start: "15% top",
+//         end: "95% bottom",
+//         markers: true,
+//         once: true,
+//         _isNavbarTrigger: true,
+//         onUpdate: (self) =>
+//         {
+//             if (self.direction !== lastDirection.value)
+//             {
+//                 self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
+//                 lastDirection.value = self.direction
+//             }
+//         }
+//     })
+// }
+
 function initNavbarScrollTriggers()
 {
+    // Kill any existing navbar triggers
     ScrollTrigger.getAll()
         .filter(st => st.vars._isNavbarTrigger)
         .forEach(st => st.kill())
 
+    // Reset direction state on each init (e.g. after page navigation)
+    const navbar = document.querySelector("header")
+    let lastDirection = { value: 0 }
+    const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.3, ease: "power2.out" }).progress(1)
+
+
     ScrollTrigger.create(
     {
         trigger: "body",
-        start: "15% top",
-        end: "95% bottom",
-        markers: true,
+        start: "80px top",        // only fires after user scrolls 80px down
+        end: "bottom bottom",
         _isNavbarTrigger: true,
         onUpdate: (self) =>
         {
             if (self.direction !== lastDirection.value)
             {
-                self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
-                lastDirection.value = self.direction
+                // Scrolling UP  → show navbar
+                // Scrolling DOWN → hide navbar
+                // self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
+                // lastDirection.value = self.direction
             }
         }
     })
@@ -127,15 +160,15 @@ function initNavbarScrollTriggers()
 
 function initSectionScrollTriggers()
 {
-    // Kill any existing section triggers to prevent duplicates on navigation
     ScrollTrigger.getAll()
         .filter(st => st.vars._isSectionTrigger)
         .forEach(st => st.kill())
 
-        ScrollTrigger.refresh()
+    ScrollTrigger.refresh()
 
-    const sections = document.querySelectorAll(".js-st-section")
-    // const sections = gsap.utils.toArray('#home-page-template section')
+    const sections = document.querySelectorAll(".js-st-theme")
+    const revealSections = document.querySelectorAll(".js-st-reveal")
+    const header = document.querySelector("header")
 
     if (!sections.length)
     {
@@ -143,22 +176,50 @@ function initSectionScrollTriggers()
         return
     }
 
-    sections.forEach((section, index) =>
+    // ── Navbar theme trigger (all sections) ──
+    sections.forEach((section) =>
+    {
+        const theme = [...section.classList]
+            .find(c => c.startsWith("nav-theme-"))
+            ?.replace("nav-theme-", "")
+
+        if (!theme) return
+
+        ScrollTrigger.create(
+        {
+            trigger: section,
+            start: "top 4%",
+            end: "bottom 4%",
+            // markers: true,
+            _isSectionTrigger: true,
+            onEnter:     () => setNavbarTheme(header, theme),
+            onEnterBack: () => setNavbarTheme(header, theme),
+        })
+    })
+
+    // ── Reveal trigger (non-hero sections only) ──
+    revealSections.forEach((section) =>
     {
         ScrollTrigger.create(
         {
             trigger: section,
-            start: "top top",
+            start: "top 50%",
             end: "bottom bottom",
-            markers: true,
-            // once: true,
-            // _isSectionTrigger: true,   // custom flag so we can kill them later
+            once: true,
+            _isSectionTrigger: true,
             onEnter: () => Transition.revealSection(section),
-            // onEnterBack: () => {_y reverse}
         })
     })
 
-    console.log(`initSectionScrollTriggers: ${sections.length} trigger(s) created`)
+    ScrollTrigger.refresh()
+
+    console.log(`initSectionScrollTriggers: ${sections.length} theme trigger(s), ${revealSections.length} reveal trigger(s) created`)
+}
+
+function setNavbarTheme(header, theme)
+{
+    header.classList.remove("theme-light", "theme-dark")
+    header.classList.add(`theme-${theme}`)
 }
 
 // Expose globally so Router can call it
@@ -184,7 +245,7 @@ function lenisScroll() {
     {
         lerp: 0.05,
         // duration: 1.8,
-        // easing: (t) => 1 - Math.exp(-6 * t) * Math.cos(t * 0.5), // damped
+        // easing: (t) => 1 - Math.exp(-6 * t) * Math.cos(t * 0.5) // damped
     })
 
     App.lenis = lenis
@@ -192,7 +253,7 @@ function lenisScroll() {
     lenis.on("scroll", () => ScrollTrigger.update())
 
     gsap.ticker.add(() => {
-        lenis.raf(performance.now()) // ✅ Correct absolute timestamp
+        lenis.raf(performance.now())
     })
     gsap.ticker.lagSmoothing(0)
 }

@@ -1644,6 +1644,11 @@ about-page {
     color: var(--p-clr-black);
 }
 
+/* ._y elements are hidden until their split animation takes over */
+main ._y { visibility: hidden; }
+
+/* ._o elements are hidden until opacityReveal takes over */
+main ._o { visibility: hidden; }
 
 
 
@@ -1651,3 +1656,14 @@ about-page {
 
 
 
+/* Default navbar state */
+header { --nav-color: #000; }
+header a, header button { color: var(--nav-color); }
+header .logo { fill: var(--nav-color); }
+
+/* Theme overrides toggled by JS */
+header.theme-light { --nav-color: #ffffff; }
+header.theme-dark  { --nav-color: #000000; }
+
+/* Smooth color transition */
+header { transition: color 800ms var(--g-o6); }
