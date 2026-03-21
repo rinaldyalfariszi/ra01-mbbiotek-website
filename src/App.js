@@ -151,8 +151,8 @@ function initNavbarScrollTriggers()
             {
                 // Scrolling UP  → show navbar
                 // Scrolling DOWN → hide navbar
-                // self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
-                // lastDirection.value = self.direction
+                self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
+                lastDirection.value = self.direction
             }
         }
     })
