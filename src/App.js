@@ -21,6 +21,7 @@ App.router = Route
 App.transition = Transition
 App.isTransitioning = false
 App.lenis = null
+let navbarTween = null
 
 
 globalThis.addEventListener("DOMContentLoaded", async () =>
@@ -55,25 +56,6 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
 
     /**
      * ============================================================
-     * Site header ScrollTrigger
-     * ============================================================
-     */
-    // const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.2 }).progress(1)
-
-    // let lastDirection = { value: 0 }
-    // let navST = null
-
-    // navST?.kill()
-    // navST = 
-
-    /**
-     * ============================================================
-     * Page section ScrollTrigger
-     * ============================================================
-     */
-
-    /**
-     * ============================================================
      * Resize debounce
      * ============================================================
      */
@@ -101,57 +83,34 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     })
 })
 
-// function initNavbarScrollTriggers()
-// {
-//     ScrollTrigger.getAll()
-//         .filter(st => st.vars._isNavbarTrigger)
-//         .forEach(st => st.kill())
-
-//     ScrollTrigger.create(
-//     {
-//         trigger: "body",
-//         start: "15% top",
-//         end: "95% bottom",
-//         markers: true,
-//         once: true,
-//         _isNavbarTrigger: true,
-//         onUpdate: (self) =>
-//         {
-//             if (self.direction !== lastDirection.value)
-//             {
-//                 self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
-//                 lastDirection.value = self.direction
-//             }
-//         }
-//     })
-// }
-
-function initNavbarScrollTriggers()
-{
-    // Kill any existing navbar triggers
+function initNavbarScrollTriggers() {
     ScrollTrigger.getAll()
         .filter(st => st.vars._isNavbarTrigger)
         .forEach(st => st.kill())
 
-    // Reset direction state on each init (e.g. after page navigation)
     const navbar = document.querySelector("header")
     let lastDirection = { value: 0 }
-    const navbarTween = gsap.from(navbar, { yPercent: -100, paused: true, duration: 0.3, ease: "power2.out" }).progress(1)
 
+    navbarTween = {
+        play:    () => gsap.to(navbar, { yPercent: 0, duration: 0.6, ease: "o2", overwrite: true }), // Navbar show
+        reverse: () => gsap.to(navbar, { yPercent: -100, duration: 0.6, ease: "power2", overwrite: true }) // Navbar hide
+    }
 
-    ScrollTrigger.create(
-    {
+    // Ensure navbar starts visible
+    gsap.set(navbar, { yPercent: 0 })
+
+    ScrollTrigger.create({
         trigger: "body",
-        start: "80px top",        // only fires after user scrolls 80px down
+        start: "500px top",
         end: "bottom bottom",
         _isNavbarTrigger: true,
-        onUpdate: (self) =>
-        {
-            if (self.direction !== lastDirection.value)
-            {
-                // Scrolling UP  → show navbar
-                // Scrolling DOWN → hide navbar
-                self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
+        onUpdate: (self) => {
+            if (self.direction !== lastDirection.value) {
+                if (App.navbarLocked) {
+                    navbarTween.play()
+                } else {
+                    self.direction === -1 ? navbarTween.play() : navbarTween.reverse()
+                }
                 lastDirection.value = self.direction
             }
         }
@@ -194,6 +153,23 @@ function initSectionScrollTriggers()
             _isSectionTrigger: true,
             onEnter:     () => setNavbarTheme(header, theme),
             onEnterBack: () => setNavbarTheme(header, theme),
+        })
+    })
+
+    // ── Navbar lock trigger ──
+    // Add class "js-st-navbar-lock" to any section that should keep navbar always visible
+    App.navbarLocked = false  // reset on each page init
+
+    document.querySelectorAll(".js-st-navbar-lock").forEach((section) => {
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top 4%",
+            end: "bottom 4%",
+            _isSectionTrigger: true,
+            onEnter:     () => { App.navbarLocked = true;  navbarTween.play() },    // scrolling DOWN into lock → show
+            onEnterBack: () => { App.navbarLocked = true;  navbarTween.play() },    // scrolling UP back into lock → show
+            onLeave:     () => { App.navbarLocked = false; navbarTween.reverse() }, // scrolling DOWN out of lock → hide immediately
+            onLeaveBack: () => { App.navbarLocked = false }
         })
     })
 
