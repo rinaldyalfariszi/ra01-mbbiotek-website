@@ -284,6 +284,7 @@
 
         --g-container-padding: clamp(1.25em, 4vw, 2.5em);
         --g-o6: cubic-bezier(.16, 1, .3, 1);
+        --g-o2: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         --g-padding-inline: 6vw;
         
         --g-hero-img-min: 320px;
@@ -488,6 +489,7 @@
         padding-inline: var(--wrapper-padding-inline);
         /* padding-inline: 0; */
         margin-inline: calc((100vw - var(--wrapper-max-width)) / 2);
+        height: 100%;
         /* border: 1px dashed yellowgreen; */
 
         &[data-wrapper-width="max-content"] {
@@ -929,7 +931,6 @@
     .site-header {
         position: fixed;
         width: 100%;
-        padding-block: 1rem;
         z-index: 998;
         height: var(--g-header-height);
         /* border: 1px dashed salmon; */
@@ -1657,24 +1658,44 @@ main ._o { visibility: hidden; }
 
 
 /* Default navbar state */
-header { --nav-color: #000; }
-header a, header button { color: var(--nav-color); }
-header .logo { fill: var(--nav-color); }
+.site-header {
+    --nav-color: #000;
+    /* border-bottom: 1px solid black; */
+}
+.site-header-content {
+    height: 100%;
+    margin-block: auto;
+    /* border-bottom: 1px solid black; */
+}
+.site-header a, .site-header button { color: var(--nav-color); }
+.site-header .logo { fill: var(--nav-color); }
 
 /* Theme overrides toggled by JS */
-header.theme-light { 
+.site-header.theme-light { 
     --nav-color: #ffffff;
+    background-color: transparent;
+    box-shadow: 0;
 }
 
-header.theme-dark {
+.site-header.theme-dark {
+    background-color: white;
     --nav-color: #000000;
+    box-shadow: 0 4px 6px -4px rgba(0, 0, 0, 0.2);
 }
 
-header.theme-light .logo path  { fill: white; stroke: white; }
-/* header.theme-light .logo path { fill: black; } */
+/* .site-header.theme-bg-transparent {
+    background-color: transparent;
+} */
+
+.site-header.theme-light .logo path  { fill: white; stroke: white; }
 
 /* Smooth color transition */
-header a,
-header button { transition: color 1s var(--g-o6); }
-header.theme-light .logo path  { transition: fill 0.4s var(--g-o6), stroke 0.2s var(--g-o6) }
-header.theme-dark .logo path  { transition: fill 0.4s var(--g-o6), stroke 0.2s var(--g-o6) }
+.site-header a,
+.site-header button { transition: color 1s var(--g-o6); }
+.site-header.theme-light .logo path  { transition: fill 0.4s var(--g-o6), stroke 0.2s var(--g-o6) }
+.site-header.theme-dark .logo path  { transition: fill 0.4s var(--g-o6), stroke 0.2s var(--g-o6) }
+.site-header.theme-light { transition: background-color 0.4s var(--g-o2) }
+.site-header.theme-dark { transition: background-color 0.4s var(--g-o2) }
+
+
+

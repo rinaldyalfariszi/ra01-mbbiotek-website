@@ -93,7 +93,7 @@ function initNavbarScrollTriggers() {
 
     navbarTween = {
         play:    () => gsap.to(navbar, { yPercent: 0, duration: 0.6, ease: "o2", overwrite: true }), // Navbar show
-        reverse: () => gsap.to(navbar, { yPercent: -100, duration: 0.6, ease: "power2", overwrite: true }) // Navbar hide
+        reverse: () => gsap.to(navbar, { yPercent: -102, duration: 0.6, ease: "power2", overwrite: true }) // Navbar hide
     }
 
     // Ensure navbar starts visible
@@ -147,8 +147,8 @@ function initSectionScrollTriggers()
         ScrollTrigger.create(
         {
             trigger: section,
-            start: "top 4%",
-            end: "bottom 4%",
+            start: "top 5%",
+            end: "bottom 5%",
             // markers: true,
             _isSectionTrigger: true,
             onEnter:     () => setNavbarTheme(header, theme),
