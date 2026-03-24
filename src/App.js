@@ -127,7 +127,7 @@ function initSectionScrollTriggers()
 
     const sections = document.querySelectorAll(".js-st-theme")
     const revealSections = document.querySelectorAll(".js-st-reveal")
-    const header = document.querySelector("header")
+    const header = document.querySelector(".site-header")
 
     if (!sections.length)
     {
@@ -192,10 +192,9 @@ function initSectionScrollTriggers()
     console.log(`initSectionScrollTriggers: ${sections.length} theme trigger(s), ${revealSections.length} reveal trigger(s) created`)
 }
 
-function setNavbarTheme(header, theme)
-{
-    header.classList.remove("theme-light", "theme-dark")
-    header.classList.add(`theme-${theme}`)
+function setNavbarTheme(header, theme) {
+    header.classList.remove("site-header--theme-light", "site-header--theme-dark")
+    header.classList.add(`site-header--theme-${theme}`)
 }
 
 // Expose globally so Router can call it
