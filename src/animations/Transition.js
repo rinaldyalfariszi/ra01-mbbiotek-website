@@ -60,15 +60,18 @@ const Transition =
             onComplete: () => { App.isTransitioning = false }
         })
 
-        const yEls = document.querySelectorAll(".hero-section ._y")
-        const oEls = document.querySelectorAll(".hero-section ._o")
+        const heroYElements = document.querySelectorAll(".hero-section ._y")
+        const heroOElements = document.querySelectorAll(".hero-section ._o")
+        const navbarYElements = document.querySelectorAll(".site-header ._y")
+        const navbarOElements = document.querySelectorAll(".site-header ._o")
         
         introTimeline
             .add(Transition.sailFadeIn(), "0")
             .add(Transition.introPageSlideUp(), "0")
             // .add(Transition.introTextReveal(), ".6")
-            .add(Transition.textReveal(yEls), ".6")
-            .add(Transition.opacityReveal(oEls), "1")
+            .add(Transition.textReveal(heroYElements), ".6")
+            .add(Transition.textReveal(navbarYElements), "0")
+            .add(Transition.opacityReveal(heroOElements), "1")
         
         console.log("intro() running")
         return introTimeline
