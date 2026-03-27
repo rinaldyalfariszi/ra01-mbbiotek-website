@@ -1,10 +1,12 @@
 /**
  * Fluid sizes (global size) are -> font-size, margin, padding, gap, width, height, cols 
- * Aspect ratio -> 1200x675 (16/9), 2160x1215 (16/9), 
+ * Aspect ratio -> 1200x675 (16/9), 2160x1215 (16/9)
  */
 
 /* TODO: Add clamp to the <a> element */
 /* TODO: Add clamp to the margin-bottom of hero-content-bottom */
+
+@layer management, reset, base, layout, components, utilities;
 
 @layer management {
     /* Style Naming Convention */
@@ -40,12 +42,13 @@
     .dynamic-section {}
 
     /* BEM - Layout > Hero Section */
-    .hero-section {}
-    .hero-section__content {}
-    .hero-section__visual {}
-    .hero-section__message {}
-    .hero-section__lead {}
-    .hero-section__cta-wrapper {}
+    .hero {}
+    .hero__content {}
+    .hero__visual {}
+    .hero__message {}
+    .hero__lead {}
+    .hero__cta-wrapper {}
+    .hero--article {}
 
     /* BEM - Component > CTA */
     .cta {}
@@ -75,6 +78,12 @@
     .footer-section__lead {}
     .footer-section__info {}
     .footer-section__info-column {}
+
+    /* BEM - Layout > Section */
+    .section {}
+    .section--full-vh {}
+    .section--full-svh {}
+    .section--full-dvh {}
 }
 
 /**
@@ -166,6 +175,10 @@
         -webkit-user-drag: none;    /* Safari, Chrome */
         -moz-user-drag: none;       /* Firefox */
         -ms-user-drag: none;        /* IE */
+    }
+
+    svg {
+        -webkit-transform: translate3d(0,0,0);
     }
 
     input,
@@ -318,6 +331,7 @@
         --p-us-28-64: clamp(28px, 19.6461px + 2.6106vw, 64px); /* min @320px */
         --p-us-28-48: clamp(28px, 22.0413px + 1.5279vw, 48px);
         --p-us-20-32: clamp(20px, 16.4248px + 0.9167vw, 32px);
+        --p-us-18-28: clamp(18px, 15.0206px + 0.7639vw, 28px);
         --p-us-16-20: clamp(16px, 14.8083px + 0.3056vw, 20px);
         --p-us-14-20: clamp(14px, 12.2124px + 0.4584vw, 20px);
         --p-us-14-18: clamp(14px, 12.8083px + 0.3056vw, 18px);
@@ -336,6 +350,7 @@
             --p-us-28-64: 3.2vw;
             --p-us-28-48: 2.4vw;
             --p-us-20-32: 1.6vw;
+            --p-us-18-28: 1.4vw;
             --p-us-16-20: 1vw;
             --p-us-14-20: 1vw;
             --p-us-14-18: 0.9vw;
@@ -477,6 +492,16 @@
  */
  @layer layout {
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - Section
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .section {
+        min-height: auto;
+        background: var(--p-clr-white);
+        color: var(--p-clr-black);
+    }
+
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Wrapper
     /* Wrapper max width will match the Figma measurement by adding more space
     /* which is the left & right padding
@@ -499,7 +524,6 @@
         &[data-wrapper-width="wide"] {
             --wrapper-max-width: 1340px;
         }
-
     }
 
     .wrapper--narrow {
@@ -513,9 +537,11 @@
         }
     }
 
+
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Columns
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* == Equal Columns == */
     .grid-equal-columns {
         display: grid;
         gap: var(--equal-columns-gap, 1rem);
@@ -545,6 +571,7 @@
         }
     }
 
+    /* == Auto Fit Columns == */
     .grid-auto-fit {
         --auto-fit-min-col-size: 18.75em;
         display: grid;
@@ -583,16 +610,7 @@
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
-    /* Layout - Common Section
-    /*───────────────────────────────────────────────────────────────────────────────────────*/
-    .common-section {
-        min-height: 100vh;
-        background: var(--p-clr-white);
-        color: var(--p-clr-black);
-    }
-
-    /*───────────────────────────────────────────────────────────────────────────────────────*/
-    /* Layout - Home Section 2
+    /* Layout - Home Page Section 2
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .home-section-2-content {
         position: relative;
@@ -630,9 +648,33 @@
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - About Page Section 2 - Company Intro
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .company-intro {
+        padding-block: 8em;
+    }
+
+    .company-intro__content {
+        align-items: center;
+    }
+
+    .company-intro__logo {
+        justify-self: center;
+        width: clamp(150px, 18vw, 300px);
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .company-intro__description {}
+
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Hero Section
     /*───────────────────────────────────────────────────────────────────────────────────────*/
-    .hero-section {
+    .hero {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -644,7 +686,7 @@
         /* border: 1px dashed white; */
     }
 
-    .hero-section__content {
+    .hero__content {
         position: relative;
         display: flex;
         flex-direction: column;
@@ -655,7 +697,7 @@
         /* border: 1px dashed yellow; */
     }
 
-    .hero-section__visual {
+    .hero__visual {
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -682,21 +724,21 @@
         }
     }
 
-    .hero-section__message {
+    .hero__message {
         display: flex;
         flex-direction: column;
         gap: 12px;
         margin-bottom: 20px;
     }
 
-    .hero-section__lead {
+    .hero__lead {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         gap: 20px;
     }
 
-    .hero-section__cta-wrapper {
+    .hero__cta-wrapper {
         display: flex;
         gap: 16px;
         margin-bottom: 0;
@@ -910,13 +952,13 @@
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Desktop BP */
     @media (width > 960px) {
-        .hero-section__message {
+        .hero__message {
             flex-direction: row;
             gap: clamp(2vw, 4vw, 106px);
             margin-bottom: 64px;
         }
 
-        .hero-section__cta-wrapper {
+        .hero__cta-wrapper {
             margin-bottom: 16px;
         }
     }
@@ -1270,6 +1312,15 @@
         letter-spacing: var(--p-ft-normal);
     }
 
+    .body-xl-regular-fluid {
+        /* min-width: fit-content; */
+        font-size: var(--p-us-18-28);
+        font-family: var(--s-font-family-body);
+        font-weight: var(--s-font-weight-body-regular);
+        line-height: 145%;
+        letter-spacing: var(--p-ft-normal);
+    }
+
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Component - Sail
     /*───────────────────────────────────────────────────────────────────────────────────────*/
@@ -1527,7 +1578,11 @@
     /* Utility - Layouts
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .u-item-center {
-        justify-content: center;
+        justify-self: center;
+    }
+
+    .u-align-center {
+        align-items: center;
     }
 
     .u-ratio-16-9 {
@@ -1555,6 +1610,10 @@
 
     .u-justify-between {
         justify-content: space-between;
+    }
+
+    .u-justify-evenly {
+        justify-content: space-evenly;
     }
 
     .u-self-center {
@@ -1599,11 +1658,41 @@
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Utility - Sizes
     /*───────────────────────────────────────────────────────────────────────────────────────*/
-    .u-h-full {
+    .u-height-full {
+        height: 100%;
+    }
+
+    .u-height-full-vh {
         height: 100vh;
     }
 
-    .u-w-full {
+    .u-min-height-full {
+        min-height: 100%;
+    }
+
+    .u-min-height-full-vh {
+        min-height: 100vh;
+    }
+
+    .u-min-height-full-svh {
+        min-height: 100vh;
+        min-height: 100svh;
+    }
+
+    .u-min-height-full-dvh {
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .u-min-height-max {
+        height: min-content;
+    }
+
+    .u-width-full {
+        width: 100%;
+    }
+
+    .u-width-full-vw {
         width: 100vw;
     }
 
@@ -1679,10 +1768,7 @@ about-page {
     align-items: center;
 }
 
-.dynamic-section {
-    background: var(--p-clr-white);
-    color: var(--p-clr-black);
-}
+
 
 /* ._y elements are hidden until their split animation takes over */
 main ._y { visibility: hidden; }

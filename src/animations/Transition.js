@@ -60,8 +60,8 @@ const Transition =
             onComplete: () => { App.isTransitioning = false }
         })
 
-        const heroYElements = document.querySelectorAll(".hero-section ._y")
-        const heroOElements = document.querySelectorAll(".hero-section ._o")
+        const heroYElements = document.querySelectorAll(".hero ._y")
+        const heroOElements = document.querySelectorAll(".hero ._o")
         const navbarYElements = document.querySelectorAll(".site-header ._y")
         const navbarOElements = document.querySelectorAll(".site-header ._o")
         
@@ -133,7 +133,7 @@ const Transition =
         })
 
         tl
-            .add(Transition.textReveal("hero-section ._y"), "0")
+            .add(Transition.textReveal(".hero ._y"), "0")
             .add(Transition.opacityReveal("._o"), "0")
 
         return tl
