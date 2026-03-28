@@ -41,6 +41,9 @@
     .divider-line {}
     .dynamic-section {}
 
+    /* BEM - Layout > Section */
+    .section {}
+
     /* BEM - Layout > Hero Section */
     .hero {}
     .hero__content {}
@@ -78,12 +81,6 @@
     .footer-section__lead {}
     .footer-section__info {}
     .footer-section__info-column {}
-
-    /* BEM - Layout > Section */
-    .section {}
-    .section--full-vh {}
-    .section--full-svh {}
-    .section--full-dvh {}
 }
 
 /**
@@ -669,6 +666,15 @@
     }
     
     .company-intro__description {}
+
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - About Page Section 3 - Company Vision
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .company-vision {}
+    .company-vision__content {
+        /* display: flex; */
+    }
 
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
@@ -1285,6 +1291,15 @@
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
 
+    .heading-regular-light-fluid {
+        min-width: fit-content;
+        font-size: var(--p-us-28-48);
+        font-family: var(--s-font-family-heading);
+        font-weight: var(--s-font-weight-heading-light);
+        line-height: var(--s-font-leading-heading-xl);
+        letter-spacing: var(--s-font-tracking-heading-xl);
+    }
+
     .heading-2xs-regular-fluid {
         min-width: fit-content;
         font-size: var(--p-us-20-32);
@@ -1312,11 +1327,29 @@
         letter-spacing: var(--p-ft-normal);
     }
 
+    .body-lg-regular-fluid {
+        min-width: fit-content;
+        font-size: var(--p-us-14-20);
+        font-family: var(--s-font-family-body);
+        font-weight: var(--s-font-weight-body-regular);
+        line-height: 150%;
+        letter-spacing: var(--p-ft-normal);
+    }
+
     .body-xl-regular-fluid {
         /* min-width: fit-content; */
         font-size: var(--p-us-18-28);
         font-family: var(--s-font-family-body);
         font-weight: var(--s-font-weight-body-regular);
+        line-height: 145%;
+        letter-spacing: var(--p-ft-normal);
+    }
+
+    .body-xl-light-fluid {
+        /* min-width: fit-content; */
+        font-size: var(--p-us-18-28);
+        font-family: var(--s-font-family-body);
+        font-weight: var(--s-font-weight-body-light);
         line-height: 145%;
         letter-spacing: var(--p-ft-normal);
     }
@@ -1566,6 +1599,13 @@
         -webkit-text-fill-color: transparent;
     }
 
+    .u-text-gradient-secondary {
+        background-image: linear-gradient(60deg, rgb(112, 35, 77), rgb(180, 69, 123), rgb(112, 35, 77));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
     .u-border-white {
         color: var(--p-clr-white);
     }
@@ -1702,6 +1742,18 @@
 
     .u-icon-md {
         width: var(--p-us-32-48);
+    }
+
+    .u-border-radius-1 {
+        border-radius: var(--s-border-radius-1);
+    }
+
+    .u-border-radius-2 {
+        border-radius: var(--s-border-radius-2);
+    }
+
+    .u-border-radius-3 {
+        border-radius: var(--s-border-radius-3);
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
