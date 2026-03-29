@@ -673,7 +673,24 @@
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .company-vision {}
     .company-vision__content {
-        /* display: flex; */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .company-vision__header {
+        flex: 1 0;
+    }
+
+    .company-vision__body {
+        display: flex;
+        flex: 1 1;
+    }
+
+    .company-vision__body-inner {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+        margin-bottom: auto;
     }
 
 
