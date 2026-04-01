@@ -1,6 +1,7 @@
 /**
  * Fluid sizes (global size) are -> font-size, margin, padding, gap, width, height, cols 
  * Aspect ratio -> 1200x675 (16/9), 2160x1215 (16/9)
+ * Breakpoints -> 2000px, 960px, 760px, 560px, 550px
  */
 
 /* TODO: Add clamp to the <a> element */
@@ -676,8 +677,10 @@
     .company-vision__content {
         display: flex;
         gap: 5em;
-        /* border: 1px dashed red; */
+    }
 
+    .company-vision__content--reverse {
+        flex-direction: row-reverse;
     }
 
     .company-vision__copy {
@@ -700,6 +703,25 @@
         display: flex;
         align-self: flex-end;
         width: 50%;
+    }
+
+    @media (width < 960px) {
+        .company-vision {
+            padding-block: 2em;
+        }
+
+        .company-vision__content {
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .company-vision__copy {
+            gap: 2em;
+        }
+
+        .company-vision__body {
+            width: 100% !important;
+        }
     }
 
     /* .company-vision__header {
