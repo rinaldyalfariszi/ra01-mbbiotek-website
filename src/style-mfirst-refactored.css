@@ -490,6 +490,13 @@
  */
  @layer layout {
     /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - Text Flow
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .flow > * + * {
+        margin-block-start: var(--flow-space, 1em);
+    }
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Section
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     .section {
@@ -666,13 +673,19 @@
         }
     }
     
-    .company-intro__description {}
+    .company-intro__description {
+        width: 100%;
+    }
 
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - About Page Section 3 - Company Vision
     /*───────────────────────────────────────────────────────────────────────────────────────*/
-    .company-vision {}
+    .company-vision {
+        min-height: 100%;
+        padding-block-end: 10em;
+        /* border: 1px dashed red; */
+    }
 
     .company-vision__content {
         display: flex;
@@ -686,7 +699,8 @@
     .company-vision__copy {
         display: flex;
         flex-direction: column;
-        padding-bottom: 2em;
+        padding-bottom: 1em;
+        /* gap: 2em; */
         justify-content: space-between;
         /* border: 1px dashed red; */
     }
@@ -705,6 +719,19 @@
         width: 50%;
     }
 
+    /* == BP Tablet - About Page Section 3 - Company Vision == */
+    @media (width < 1300px) {
+        .company-vision__body {
+            width: 100% !important;
+        }
+
+        .company-vision__copy {
+            padding-bottom: 0;
+            justify-content: flex-start;
+        }
+    }
+
+    /* == BP Mobile - About Page Section 3 - Company Vision == */
     @media (width < 960px) {
         .company-vision {
             padding-block: 2em;
@@ -713,14 +740,6 @@
         .company-vision__content {
             flex-direction: column;
             gap: 1em;
-        }
-
-        .company-vision__copy {
-            gap: 2em;
-        }
-
-        .company-vision__body {
-            width: 100% !important;
         }
     }
 
