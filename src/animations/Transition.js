@@ -15,7 +15,7 @@ const Transition =
         })
         Transition._splitInstances = []
         
-        gsap.set("home-page, about-page", { clearProps: "all" })
+        gsap.set("home-page, about-page, capabilities-page, products-page, partners-page", { clearProps: "all" })
         gsap.set("h1, h2, h3, p, a", { clearProps: "all" })
         gsap.set("._o", { clearProps: "opacity" })
     },

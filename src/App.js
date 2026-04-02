@@ -3,6 +3,9 @@ import { Transition } from './animations'
 
 import { HomePage } from './components/HomePage.js'
 import { AboutPage } from './components/AboutPage.js'
+import { CapabilitiesPage } from './components/CapabilitiesPage.js'
+import { ProductsPage } from './components/ProductsPage.js'
+import { PartnersPage } from './components/PartnersPage.js'
 
 import Lenis from 'lenis'
 import { gsap } from 'gsap'

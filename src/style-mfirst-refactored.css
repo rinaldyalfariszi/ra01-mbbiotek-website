@@ -1897,7 +1897,10 @@
 }
 
 home-page,
-about-page {
+about-page,
+capabilities-page,
+products-page,
+partners-page {
     display: block;
     will-change: transform, opacity;
 }

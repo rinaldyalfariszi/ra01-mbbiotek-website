@@ -64,6 +64,24 @@ const Route =
 
                 Route.routes.push(route)
                 break;
+            case "/capabilities":
+                pageElement = document.createElement("capabilities-page")
+                Route.setMetaData("Capabilities")
+
+                Route.routes.push(route)
+                break;
+            case "/products":
+                pageElement = document.createElement("products-page")
+                Route.setMetaData("Products")
+
+                Route.routes.push(route)
+                break;
+            case "/partners":
+                pageElement = document.createElement("partners-page")
+                Route.setMetaData("Partners")
+
+                Route.routes.push(route)
+                break;
         }
 
         if (pageElement)
