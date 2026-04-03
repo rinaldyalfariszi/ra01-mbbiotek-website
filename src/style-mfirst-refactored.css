@@ -109,6 +109,7 @@
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
         overflow-x: hidden;
+        scrollbar-gutter: stable;
     }
 
     body {
@@ -211,7 +212,6 @@
 
     /* Force a reserved gutter while stopped */
     .force-scrollbar {
-        scrollbar-gutter: stable;
         overflow-y: scroll !important;
     }
 }
