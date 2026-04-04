@@ -496,6 +496,10 @@
         margin-block-start: var(--flow-space, 1em);
     }
 
+    .flow--md {
+        --flow-space: 2em;
+    }
+
     /*───────────────────────────────────────────────────────────────────────────────────────*/
     /* Layout - Section
     /*───────────────────────────────────────────────────────────────────────────────────────*/
@@ -758,6 +762,16 @@
         margin-top: auto;
         margin-bottom: auto;
     } */
+
+
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    /* Layout - Partners Page Section 2 - Our Partners
+    /*───────────────────────────────────────────────────────────────────────────────────────*/
+    .our-partners {}
+    .our-partners__content {
+        display: flex;
+        flex-direction: row;
+    }
 
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/
@@ -1289,6 +1303,26 @@
         border: 0;
         padding: 0;
     }
+
+    .card--partnership {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding-block: 0.4em;
+        padding-inline: 0.4em;
+        border: 1px solid gray;
+        border-radius: var(--s-border-radius-2);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+        }
+    }
+
+
 
     @container card (inline-size > 760px) {
         .card__content {
