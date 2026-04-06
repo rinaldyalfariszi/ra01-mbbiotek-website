@@ -1357,6 +1357,35 @@
         }
     }
 
+    .card--capabilities {
+        /* padding-block: 1.5rem; */
+        /* padding-inline: 1.25rem; */
+
+        
+
+        .card__image {
+            background: transparent;
+
+            img {
+                object-fit: contain;
+            }
+        }
+
+        .card__description {
+            display: none;
+        }
+
+        .card__cta {
+            margin-top: auto;
+            max-width: 100%;
+        }
+
+        .card__info > h3 {
+            text-align: center;
+            font-size: var(--p-us-20-25);
+        }
+    }
+
     /* == Card width > 760px == */
     @container card (inline-size > 760px) {
         .card__content {
