@@ -1358,16 +1358,23 @@
     }
 
     .card--capabilities {
-        /* padding-block: 1.5rem; */
-        /* padding-inline: 1.25rem; */
+        padding-block: 1.5rem;
+        padding-inline: 1.25rem;
+
 
         
+        .card__content {
+            align-self: center;
+            justify-self: center;
+            height: 100%;
+        }
 
         .card__image {
+            flex: 1 0;
             background: transparent;
 
             img {
-                object-fit: contain;
+                object-fit: cover;
             }
         }
 
