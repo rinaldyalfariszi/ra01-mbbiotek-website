@@ -17,6 +17,61 @@
         <!-- ──────────────────────── Sail ──────────────────────── -->
         <div id="sail"></div>
 
+        <!-- ──────────────────────── Product Drawer ──────────────────────── -->
+        <div id="product-drawer-backdrop" class="product-drawer-backdrop" aria-hidden="true"></div>
+        <aside
+            id="product-drawer"
+            class="product-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Product Details"
+            aria-hidden="true"
+        >
+            <div class="product-drawer__inner" data-lenis-prevent>
+                <!-- Header -->
+                <div class="product-drawer__header">
+                    <span class="product-drawer__product-id body-regular-regular-fluid"></span>
+                    <button
+                        class="product-drawer__close"
+                        aria-label="Close product details"
+                        type="button"
+                    >
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M18 6L6 18M6 6l12 12"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="product-drawer__content">
+                    <!-- Image -->
+                    <div class="product-drawer__image-wrapper">
+                        <img class="product-drawer__image" src="" alt="" />
+                    </div>
+                    <!-- Body -->
+                    <div class="product-drawer__body">
+                        <h2 class="product-drawer__title heading-2xs-regular-fluid"></h2>
+                        <p class="product-drawer__description body-regular-regular-fluid"></p>
+                        <div class="product-drawer__specs">
+                            <!-- Dynamically injected spec rows -->
+                        </div>
+
+                        <!-- Footer CTA -->
+                        <div class="product-drawer__footer">
+                            <a href="" class="cta product-drawer__cta">
+                                <span class="cta__bg"></span>
+                                <span class="cta__label">Request Info</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
         <!-- ──────────────────────── Site Header ──────────────────────── -->
         <header class="site-header">
             <div class="wrapper">
@@ -479,7 +534,7 @@
                                 <div class="card__content">
                                     <div class="card__image">
                                         <picture>
-                                            <img src="images/product-mbb-a04-vtm.png" alt="" />
+                                            <img src="images/product-mbb-a04.png" alt="" />
                                             <!-- <img
                                                 src="images/test-920x920.avif"
                                                 alt=""
@@ -2071,7 +2126,7 @@
                                 <div class="card__content">
                                     <div class="card__image">
                                         <picture>
-                                            <img src="images/product-mbb-a01-hbsag.png" alt="" />
+                                            <img src="images/product-mbb-a01.png" alt="" />
                                             <img
                                                 src="images/test-920x920.avif"
                                                 alt=""
@@ -2083,7 +2138,12 @@
                                         <h3 class="heading-2xs-regular-fluid _y">
                                             Rapid Test HBsAg Hepatitits B Surface Antigen
                                         </h3>
-                                        <a class="cta navlink card__cta">
+                                        <a
+                                            class="cta card__cta"
+                                            data-product-id="MBB-A01"
+                                            role="button"
+                                            tabindex="0"
+                                        >
                                             <span class="cta--secondary-gradient">
                                                 <div></div>
                                             </span>
@@ -2110,7 +2170,7 @@
                                 <div class="card__content">
                                     <div class="card__image">
                                         <picture>
-                                            <img src="images/product-mbb-a02-hcv.png" alt="" />
+                                            <img src="images/product-mbb-a02.png" alt="" />
                                             <!-- <img
                                                 src="images/test-920x920.avif"
                                                 alt=""
@@ -2136,7 +2196,12 @@
                                                 testing laboratory.
                                             </span>
                                         </p>
-                                        <a class="cta navlink card__cta">
+                                        <a
+                                            class="cta card__cta"
+                                            data-product-id="MBB-A02"
+                                            role="button"
+                                            tabindex="0"
+                                        >
                                             <span class="cta--secondary-gradient">
                                                 <div></div>
                                             </span>
@@ -2163,7 +2228,7 @@
                                 <div class="card__content">
                                     <div class="card__image">
                                         <picture>
-                                            <img src="images/product-mbb-a03-hiv.png" alt="" />
+                                            <img src="images/product-mbb-a03.png" alt="" />
                                             <!-- <img
                                                 src="images/test-920x920.avif"
                                                 alt=""
@@ -2175,7 +2240,12 @@
                                         <h3 class="heading-2xs-regular-fluid _y">
                                             Rapid Test HIV 1.2 / Syphilis Combo
                                         </h3>
-                                        <a class="cta navlink card__cta">
+                                        <a
+                                            class="cta card__cta"
+                                            data-product-id="MBB-A03"
+                                            role="button"
+                                            tabindex="0"
+                                        >
                                             <span class="cta--secondary-gradient">
                                                 <div></div>
                                             </span>
@@ -2202,7 +2272,7 @@
                                 <div class="card__content">
                                     <div class="card__image">
                                         <picture>
-                                            <img src="images/product-mbb-a04-vtm.png" alt="" />
+                                            <img src="images/product-mbb-a04.png" alt="" />
                                             <!-- <img
                                                 src="images/test-920x920.avif"
                                                 alt=""
@@ -2228,7 +2298,12 @@
                                                 testing laboratory.
                                             </span>
                                         </p>
-                                        <a class="cta navlink card__cta">
+                                        <a
+                                            class="cta card__cta"
+                                            data-product-id="MBB-A04"
+                                            role="button"
+                                            tabindex="0"
+                                        >
                                             <span class="cta--secondary-gradient">
                                                 <div></div>
                                             </span>

@@ -1,4 +1,6 @@
 import Route from './services/Router.js'
+import ProductDrawer from './services/ProductDrawer.js'
+
 import { Transition } from './animations'
 
 import { HomePage } from './components/HomePage.js'
@@ -24,6 +26,7 @@ App.router = Route
 App.transition = Transition
 App.isTransitioning = false
 App.lenis = null
+App.productDrawer = ProductDrawer
 let navbarTween = null
 
 
@@ -48,6 +51,15 @@ globalThis.addEventListener("DOMContentLoaded", async () =>
     CustomEase.create("o6", "M0,0 C0.19,1 0.22,1 1,1")
     CustomEase.create("o2", "M0,0 C0.25,0.46 0.45,0.94 1,1")
     CustomEase.create("io1", "0.87, 0, 0.13, 1")
+
+    // Close on backdrop click
+    document.getElementById('product-drawer-backdrop')
+        .addEventListener('click', () => ProductDrawer.close())
+
+    // Close button (in the persistent HTML)
+    document.getElementById('product-drawer')
+        .querySelector('.product-drawer__close')
+        .addEventListener('click', () => ProductDrawer.close())
 
     gsap.config({
         force3D: "auto"
