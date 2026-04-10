@@ -12,7 +12,7 @@ export const products = [
             { label: 'Specimen',        value: 'Blood, serum, and plasma' },
             { label: 'Volume Sample',   value: '80 μl' },
             { label: 'Performance',     value: 'Sensitivity: 100, Specificity: 100' },
-            { label: 'Product Storage', value: 'The product can be stored at room temperature of 15°C to 30°C.' },
+            { label: 'Product Storage', value: 'The product can be stored at room temperature of 15℃ to 30℃.' },
             { label: 'Shelf Life',      value: 'The product can be stored for up to 24 months from the date of manufacture.' },
             { label: 'NO AKD',          value: 'KEMENKES RI AKD 30305520070' },
         ]
@@ -72,7 +72,7 @@ export const products = [
         id: 'MBB-A05',
         name: 'Viral Transport Medium',
         description: 'GENOTEST VTM is a viral transport medium designed to preserve the stability of viral DNA/RNA, including influenza, RSV, SARS-CoV-2, and HPV, during sample collection, transport, and storage. It contains a balanced salt solution, pH buffer (7.2-7.4), protein stabilizers, and antimicrobial agents to prevent contamination. With a phenol red pH indicator and sterile packaging, this VTM is suitable for PCR testing and viral culture in laboratories.',
-        image: 'images/product-mbb-a05.png',
+        image: 'images/product-mbb-a05.webp',
         ctaHref: '/contact',
         specs: [
             { label: 'Detection',       value: 'For the storage of clinical samples to detect high-risk and low-risk viruses.' },
