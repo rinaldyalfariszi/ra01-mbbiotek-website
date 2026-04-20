@@ -2133,12 +2133,16 @@ main ._o { visibility: hidden; }
 
 .product-drawer__image-wrapper {
     max-width: 40%;
-    max-height: auto;
+    max-height: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
     /* background: rgba(255,255,255,0.03); */
     /* flex-shrink: 0; */
     /* background: red; */
+
+    @media (width < 960px) {
+        max-width: 100%;
+    }
 }
 
 .product-drawer__image {
