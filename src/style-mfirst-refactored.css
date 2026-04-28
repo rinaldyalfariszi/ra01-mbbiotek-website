@@ -99,7 +99,13 @@
         box-sizing: border-box;
         /* box-sizing: content-box; */
         /* border: 1px solid red; */
+        /* outline: 1px solid limegreen !important; */
+        /* background: rgb(0 100 0 / 0.1) !important; */
     }
+
+    /* *:nth-child(2n) {
+        outline: 1px solid blue !important;
+    } */
 
     /* Adjust size when landscape on mobile devices */
     html {
@@ -270,6 +276,7 @@
         /* Font Leading (Line Height) */
         --p-fl-none: 1;
         --p-fl-fit: 1.05;
+        --p-fl-loose: 1.75;
         --p-fl-84: 84;
 
         /* Font Tracking (Letter Spacing) */
@@ -1441,7 +1448,7 @@
         font-size: var(--p-us-14-20);
         font-style: normal;
         font-weight: var(--s-font-weight-body-light);
-        line-height: 150%; /* 1.85rem */
+        line-height: 1.75; /* 1.85rem */
         margin-top: 16px;
         /* max-width: 60vw; */
 
@@ -1474,7 +1481,7 @@
         font-size: var(--p-us-28-64);
         font-family: var(--s-font-family-heading);
         font-weight: var(--s-font-weight-heading-light);
-        line-height: var(--s-font-leading-heading-xl);
+        line-height: 1.2;
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
 
@@ -1483,7 +1490,7 @@
         font-size: var(--p-us-28-48);
         font-family: var(--s-font-family-heading);
         font-weight: var(--s-font-weight-heading-light);
-        line-height: var(--s-font-leading-heading-xl);
+        line-height: 1.2;
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
 
@@ -1492,7 +1499,7 @@
         font-size: var(--p-us-20-32);
         font-family: var(--s-font-family-heading);
         font-weight: var(--s-font-weight-heading-regular);
-        line-height: var(--s-font-leading-heading-xl);
+        line-height: 1.50;
         letter-spacing: var(--s-font-tracking-heading-xl);
     }
 
@@ -1501,7 +1508,7 @@
         font-size: var(--p-us-14-20);
         font-family: var(--s-font-family-body);
         font-weight: var(--s-font-weight-body-light);
-        line-height: 150%;
+        line-height: 175%;
         letter-spacing: var(--p-ft-normal);
     }
 
@@ -1510,7 +1517,7 @@
         font-size: var(--p-us-14-16);
         font-family: var(--s-font-family-body);
         font-weight: var(--s-font-weight-body-regular);
-        line-height: 150%;
+        line-height: 175%;
         letter-spacing: var(--p-ft-normal);
     }
 
@@ -1519,7 +1526,7 @@
         font-size: var(--p-us-14-20);
         font-family: var(--s-font-family-body);
         font-weight: var(--s-font-weight-body-regular);
-        line-height: 150%;
+        line-height: 175%;
         letter-spacing: var(--p-ft-normal);
     }
 
