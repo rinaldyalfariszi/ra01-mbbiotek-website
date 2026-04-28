@@ -485,6 +485,12 @@
         font-size: 1rem;
     }
 
+    [role="list"] {
+        a.navlink {
+            line-height: 1.5;
+        }
+    }
+
     a:hover,
     a:focus-visible {
         color: var(--s-text-brand-light);
@@ -1757,6 +1763,7 @@
 
     .u-is-active {
         text-decoration: underline;
+        text-underline-offset: 5px;
     }
 
     /*───────────────────────────────────────────────────────────────────────────────────────*/

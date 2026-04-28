@@ -8,11 +8,17 @@ const Route =
         // Listen to <a> navlink click event
         document.querySelectorAll("a.navlink").forEach(link =>
         {
+            if (link.href === location.href) {
+                link.classList.add('u-is-active')
+            }
+            
             link.addEventListener("click", event =>
             {
                 event.preventDefault() // Preventing browser from default reload behaviour when being clicked
+                document.querySelectorAll('.navlink').forEach(navlink => navlink.classList.remove('u-is-active'))
                 const url = event.currentTarget.getAttribute("href")
                 Route.go(url)
+                event.currentTarget.classList.add('u-is-active')
             })
         })
 
@@ -55,6 +61,8 @@ const Route =
             case "/": 
                 pageElement = document.createElement("home-page")
                 Route.setMetaData("Home")
+                // Route.setIsActive(navlink)
+                // console.log(location.pathname)
 
                 Route.routes.push(route)
                 break;
